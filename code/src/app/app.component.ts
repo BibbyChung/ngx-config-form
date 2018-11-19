@@ -1,8 +1,21 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DateConvertor } from './common/DateConvertor';
-// import { DfValidator, ISetting, EnumSettingType } from './ngx-config-form-fake/ngx-config-form-fake.module';
-import { DfValidator, ISetting, EnumSettingType } from 'ngx-config-form';
+// import { CfValidator, ISetting, EnumSettingType, IConvertor } from './ngx-config-form-fake/ngx-config-form-fake.module';
+import { CfValidator, ISetting, EnumSettingType, IConvertor } from 'ngx-config-form';
+
+class DateConvertor implements IConvertor {
+  private operator0 = '-';
+  private operator1 = '/';
+  in(v: string, args?: any) {
+    const r = new RegExp(this.operator1, 'g');
+    return `${v}`.replace(r, this.operator0);
+  }
+  out(v: string, args?: any) {
+    const r = new RegExp(this.operator0, 'g');
+    return v.replace(r, this.operator1);
+  }
+}
+
 
 @Component({
   selector: 'app-root',
@@ -82,12 +95,12 @@ export class AppComponent {
                 msg: '不小於2字元'
               },
               'mypattern': {
-                validator: DfValidator.pattern('mypattern', '^oo$'),
+                validator: CfValidator.pattern('mypattern', '^oo$'),
                 msg: 'my pattern is oo',
                 isPromiseOrObservable: false
               },
               'asyncV0': {
-                validator: DfValidator.AsyncValidate('asyncV0', 400, v => {
+                validator: CfValidator.AsyncValidate('asyncV0', 400, v => {
                   return new Promise<boolean>((resolve, reject) => {
                     setTimeout(() => {
                       if (v === '1234') {
@@ -101,7 +114,7 @@ export class AppComponent {
                 isPromiseOrObservable: true
               },
               'asyncV1': {
-                validator: DfValidator.AsyncValidate('asyncV1', 400, v => {
+                validator: CfValidator.AsyncValidate('asyncV1', 400, v => {
                   return new Promise<boolean>((resolve, reject) => {
                     setTimeout(() => {
                       if (v === '12345') {
@@ -234,7 +247,7 @@ export class AppComponent {
         type: EnumSettingType.confirmPassword,
         validators: {
           'confirmPassword': {
-            validator: DfValidator.confirmPassword('password_source', 'password_confirm'),
+            validator: CfValidator.confirmPassword('password_source', 'password_confirm'),
             isPromiseOrObservable: false,
             msg: 'The password is not the same.'
           }
