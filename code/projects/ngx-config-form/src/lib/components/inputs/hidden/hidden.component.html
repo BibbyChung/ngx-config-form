@@ -1,0 +1,19 @@
+<ng-container [formGroup]="dfFormGroup">
+  <ng-container [formGroupName]="setting.propName">
+    <ng-container *ngFor="let item of setting.items">
+      <ng-container *ngIf="{ 
+        elem: dfFormGroup.get([setting.propName, item.name]) 
+      }; let info">
+        
+        <input type="hidden" [formControlName]="item.name" >   
+      
+        <!-- <hr />
+        info.elem.dirty : {{ info.elem.dirty  | json }} <br />
+        info.elem.errors: {{ info.elem.errors | json }} <br />
+        info.elem.value: {{ info.elem.value | json }}
+        <hr /> -->
+
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</ng-container>

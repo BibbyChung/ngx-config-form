@@ -1,0 +1,175 @@
+  <form novalidate *ngIf="isReady" [formGroup]="dfFormGroup">
+    <ng-container *ngFor="let setting of dfSettings; let i=index">
+      <ng-container [ngSwitch]="setting.type">
+
+        <cf-inputs-hidden *ngSwitchCase="'hidden'" 
+          [dfFormGroup]="dfFormGroup" 
+          [setting]="setting"></cf-inputs-hidden>
+        
+        <div class="form-row" *ngSwitchCase="EnumSettingType.text">
+          <div class="form-group col-12">
+            <cf-inputs-text [dfFormGroup]="dfFormGroup" [setting]="setting"></cf-inputs-text>
+          </div>  
+        </div>
+
+        <div class="form-row" *ngSwitchCase="EnumSettingType.radio">
+          <div class="form-group col-12">
+            <cf-inputs-radio [dfFormGroup]="dfFormGroup" [setting]="setting"></cf-inputs-radio>
+          </div>
+        </div>
+
+        <div class="form-row" *ngSwitchCase="EnumSettingType.checkbox">
+          <div class="form-group col-12">
+            <cf-inputs-checkbox [dfFormGroup]="dfFormGroup" [setting]="setting"></cf-inputs-checkbox>
+          </div>
+        </div>
+
+        <div class="form-row" *ngSwitchCase="EnumSettingType.password">
+          <div class="form-group col-12">
+            <cf-inputs-password [dfFormGroup]="dfFormGroup" [setting]="setting"></cf-inputs-password>
+          </div>
+        </div>
+
+        <div class="form-row" *ngSwitchCase="EnumSettingType.confirmPassword">
+          <div class="form-group col-12">
+            <cf-inputs-confirm-password [dfFormGroup]="dfFormGroup" [setting]="setting"></cf-inputs-confirm-password>
+          </div>
+        </div>
+
+      </ng-container>
+    </ng-container>
+
+    <ng-content></ng-content>
+
+    <!-- <div class="form-row">
+        <div class="form-group col-sm-10">
+          <a href="#" class="btn btn-primary" (click)="submit($event)" [ngClass]="{'disabled': !(dfFormGroup.dirty && dfFormGroup.valid)}">Submit</a>
+          <a href="#" class="btn btn-danger" (click)="delete($event)" [ngClass]="{'d-none': id===0}">Delete</a>
+          <a href="#" class="btn btn-secondary" (click)="goBack($event)">Back</a>
+        </div>
+    </div> -->
+
+    <div class="form-row" *ngIf="isDebug">
+      <div class="form-group col-12">
+        
+        <hr /> 
+        dfFormGroup.value => {{dfFormGroup.value | json}} <br />
+        dfFormGroup.valid => {{dfFormGroup.valid | json}} <br />
+        dfFormGroup.touched  => {{dfFormGroup.touched | json}} <br />
+        dfFormGroup.dirty => {{dfFormGroup.dirty | json}}
+        <hr />
+
+      </div>
+    </div>
+
+  </form>
+
+
+
+
+
+  <!-- <form>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control is-invalid" id="inputEmail3" placeholder="Email">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <small id="emailHelp" class="form-text text-danger">We'll never share your email with anyone else.</small>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-10">
+        <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+      </div>
+    </div>
+    
+    <fieldset class="form-group">
+      <div class="row">
+        <legend class="col-form-legend col-sm-2">Radios</legend>
+        <div class="col-sm-10">
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked> Option one is this and that&mdash;be sure to include why it's great
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2"> Option two can be something else and selecting it will deselect option one
+            </label>
+          </div>
+          <div class="form-check disabled">
+            <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled> Option three is disabled
+            </label>
+          </div>
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          <small id="emailHelp" class="form-text text-danger">We'll never share your email with anyone else.</small>
+        </div>
+
+      </div>
+    </fieldset>
+
+    <div class="form-group row">
+      <div class="col-sm-2">Checkbox</div>
+      <div class="col-sm-10">
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="checkbox"> Check me out
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="checkbox"> Check me out
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-2">Example select</div>
+      <div class="col-sm-10">
+        <select class="form-control is-invalid" id="exampleFormControlSelect1">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <small id="emailHelp" class="form-text text-danger">We'll never share your email with anyone else.</small>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-2">Example multiple select</div>
+      <div class="col-sm-10">
+        <select multiple class="form-control" id="exampleFormControlSelect2">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <small id="emailHelp" class="form-text text-danger">We'll never share your email with anyone else.</small>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-2">Example textarea</div>
+      <div class="col-sm-10">
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <small id="emailHelp" class="form-text text-danger">We'll never share your email with anyone else.</small>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <a href="#" class="btn btn-primary">Submit</a>
+        <a href="#" class="btn btn-secondary">Reset</a>
+        <a href="#" class="btn btn-secondary" (click)="goBack($event)">Back</a>
+      </div>
+    </div>
+
+
+  </form> -->

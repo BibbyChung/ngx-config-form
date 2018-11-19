@@ -1,0 +1,11 @@
+<button [class]="class"
+  [ngClass]="{'disabled': !(dfFormGroup.dirty && dfFormGroup.valid)}"
+  (click)="trigger($event)">
+  <ng-content></ng-content>
+</button>
+
+<div *ngIf="isDebug==='Y'" class="tt">
+  <hr />
+  dfFormGroup.value : {{dfFormGroup.value | json}} <br />
+  <hr />
+</div>

@@ -1,0 +1,28 @@
+<header class="container">
+  <h1>
+    {{ title }}
+  </h1>
+</header>
+
+<section class="container">
+  <div class="row">
+    <div class="col-6">
+      <cf-form 
+        [isDebug]="true" 
+        [dfFormGroup]="dfFormGroup" 
+        [dfSettings]="dfSettings" 
+        [(ngModel)]="info">
+
+        <cf-button 
+          [dfFormGroup]="dfFormGroup" 
+          [class]="'btn btn-primary'" 
+          (click)="gogogo($event)">確定</cf-button>
+      </cf-form>
+      
+    </div>
+    <div class="col-6">
+      <textarea class="w-100" rows="20" [(ngModel)]="infoJson">
+      </textarea>
+    </div>
+  </div>
+</section>

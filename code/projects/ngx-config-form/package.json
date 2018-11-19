@@ -1,0 +1,30 @@
+{
+  "name": "ngx-config-form",
+  "version": "0.0.1",
+  "description": "use configuration to generate form",
+  "types": "./ngx-config-form.d.ts",
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ],
+  "author": "Bibby Chung",
+  "homepage": "https://github.com/BibbyChung/ngx-config-form",
+  "bugs": "https://github.com/BibbyChung/ngx-config-form/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BibbyChung/ngx-config-form.git"
+  },
+  "keywords": [
+    "ngx",
+    "Forms",
+    "Reactive Forms",
+    "Angular",
+    "Dynamic"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": "^7.0.0",
+    "@angular/core": "^7.0.0"
+  }
+}

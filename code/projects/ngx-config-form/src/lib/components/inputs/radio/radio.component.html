@@ -1,0 +1,42 @@
+<div [formGroup]="dfFormGroup">
+  <ng-container [formGroupName]="setting.propName">
+    <ng-container *ngFor="let item of setting.items">
+      <ng-container *ngIf="{ 
+        elem: dfFormGroup.get([setting.propName, item.name]) 
+      }; let info">
+
+        <label [for]="item.name" *ngIf="item.args['alias']">{{item.args['alias']}}</label>
+        <div class="d-block rlList">
+          <div class="form-check form-check-inline" *ngFor="let c of item.args['radios']">
+            <label class="form-check-label">
+              <input type="radio"
+                class="form-check-input" 
+                name="{{item.name}}"
+                value="{{c.value}}"
+                [formControlName]="item.name"
+                [checked]="(info.elem.value===c.value)">
+                {{c.text}}
+            </label>
+          </div>
+        </div>
+
+        <small id="emailHelp" class="form-text text-muted" *ngIf="item.args['murmur']">
+          {{item.args['murmur']}}
+        </small>
+
+        <ng-container *ngIf="info.elem.dirty && info.elem.errors">
+          <small class="form-text text-danger" *ngFor="let vName of info.elem.errors | objectKeys">
+            {{item.validators[vName].msg}}
+          </small>
+        </ng-container>
+
+        <!-- <hr />
+        info.elem.dirty : {{ info.elem.dirty  | json }} <br />
+        info.elem.errors: {{ info.elem.errors | json }} <br />
+        info.elem.value: {{ info.elem.value | json }}
+        <hr /> -->
+
+      </ng-container>
+    </ng-container> 
+  </ng-container>
+</div>

@@ -1,1 +1,1 @@
-# ngx-config-form
+# ngx-dynamic-form
