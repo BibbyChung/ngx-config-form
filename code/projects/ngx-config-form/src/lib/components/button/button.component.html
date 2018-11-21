@@ -1,11 +1,11 @@
 <button [class]="class"
-  [ngClass]="{'disabled': !(dfFormGroup.dirty && dfFormGroup.valid)}"
+  [ngClass]="{'disabled': !(cfFormGroup.dirty && cfFormGroup.valid)}"
   (click)="trigger($event)">
   <ng-content></ng-content>
 </button>
 
 <div *ngIf="isDebug==='Y'" class="tt">
   <hr />
-  dfFormGroup.value : {{dfFormGroup.value | json}} <br />
+  cfFormGroup.value : {{cfFormGroup.value | json}} <br />
   <hr />
 </div>

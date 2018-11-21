@@ -2,7 +2,7 @@ import { Component, forwardRef, Inject, Input, OnDestroy, OnInit } from '@angula
 import { FormGroup } from '@angular/forms';
 import { BaseInput } from '../../../common/baseInput';
 import { IForm } from '../../../common/IForm';
-import { ISetting } from '../../../common/ISetting';
+import { IInputSetting } from '../../../common/IInputSetting';
 import { FormComponent } from '../../form/form.component';
 
 @Component({
@@ -14,10 +14,8 @@ import { FormComponent } from '../../form/form.component';
 
 export class ConfirmPasswordComponent extends BaseInput implements OnInit, OnDestroy {
 
-  @Input() ngClass: string[] = [];
-
-  @Input() dfFormGroup: FormGroup;
-  @Input() setting: ISetting;
+  @Input() cfFormGroup: FormGroup;
+  @Input() inputSetting: IInputSetting;
 
   constructor(
     @Inject(forwardRef(() => FormComponent)) host: IForm

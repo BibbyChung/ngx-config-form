@@ -3,12 +3,12 @@ import { AbstractControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { IForm } from './IForm';
 import { IInput } from './IInput';
-import { ISetting } from './ISetting';
+import { IInputSetting } from './IInputSetting';
 
 export abstract class BaseInput implements IInput, OnInit, OnDestroy {
 
-  abstract dfFormGroup: FormGroup;
-  abstract setting: ISetting;
+  abstract cfFormGroup: FormGroup;
+  abstract inputSetting: IInputSetting;
 
   protected groupElem: AbstractControl;
   protected elem: AbstractControl;
@@ -20,8 +20,8 @@ export abstract class BaseInput implements IInput, OnInit, OnDestroy {
   abstract ngOnDestroy(): void;
 
   protected superInit() {
-    this.groupElem = this.dfFormGroup.get(this.setting.propName);
-    this.elem = this.dfFormGroup.get([this.setting.propName, this.setting.items[0].name]);
+    this.groupElem = this.cfFormGroup.get(this.inputSetting.propName);
+    this.elem = this.cfFormGroup.get([this.inputSetting.propName, this.inputSetting.items[0].name]);
 
     this.setNotify();
   }
@@ -35,7 +35,7 @@ export abstract class BaseInput implements IInput, OnInit, OnDestroy {
 
   private setNotify(): any {
     this.sbOb = this.elem.valueChanges.subscribe(v => {
-      this.host.notifyValueChange(this.setting.propName, v);
+      this.host.notifyValueChange(this.inputSetting.propName, v);
     });
   }
 }

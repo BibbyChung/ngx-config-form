@@ -8,15 +8,53 @@
   <div class="row">
     <div class="col-6">
       <cf-form 
+        [class]=''
         [isDebug]="true" 
-        [dfFormGroup]="dfFormGroup" 
-        [dfSettings]="dfSettings" 
+        [cfFormGroup]="cfFormGroup" 
+        [cfInputSettings]="cfInputSettings" 
         [(ngModel)]="info">
 
+        <ng-container *ngFor="let inputSetting of cfInputSettings; let i=index">
+
+            <!-- 'hidden' | 'text' | 'radio' | 'checkbox' | 'password' | 'confirm-password' -->
+    
+            <cf-inputs-hidden *ngIf="inputSetting.type === 'hidden'"
+              [cfFormGroup]="cfFormGroup" 
+              [inputSetting]="inputSetting"></cf-inputs-hidden>
+            
+            <div class="form-group" *ngIf="inputSetting.type === 'text'">
+              <cf-inputs-text 
+                [class]="'form-control'"
+                [cfFormGroup]="cfFormGroup" 
+                [inputSetting]="inputSetting"></cf-inputs-text>
+            </div>
+
+            <div class="form-group" *ngIf="inputSetting.type === 'password'">
+              <cf-inputs-password 
+                [class]="'form-control'"
+                [cfFormGroup]="cfFormGroup" 
+                [inputSetting]="inputSetting"></cf-inputs-password>
+            </div>
+    
+            <div class="form-group" *ngIf="inputSetting.type === 'radio'">
+              <cf-inputs-radio [cfFormGroup]="cfFormGroup" [inputSetting]="inputSetting"></cf-inputs-radio>
+            </div>
+    
+            <div class="form-group" *ngIf="inputSetting.type === 'checkbox'">
+              <cf-inputs-checkbox [cfFormGroup]="cfFormGroup" [inputSetting]="inputSetting"></cf-inputs-checkbox>
+            </div>
+    
+            <div class="form-group" *ngIf="inputSetting.type === 'confirmPassword'">
+              <cf-inputs-confirm-password [cfFormGroup]="cfFormGroup" [inputSetting]="inputSetting"></cf-inputs-confirm-password>
+            </div>
+    
+        </ng-container>
+
         <cf-button 
-          [dfFormGroup]="dfFormGroup" 
+          [cfFormGroup]="cfFormGroup" 
           [class]="'btn btn-primary'" 
           (click)="gogogo($event)">確定</cf-button>
+
       </cf-form>
       
     </div>

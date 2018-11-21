@@ -1,8 +1,8 @@
-<div [formGroup]="dfFormGroup">
-  <ng-container [formGroupName]="setting.propName">
-    <ng-container *ngFor="let item of setting.items">
+<ng-container [formGroup]="cfFormGroup">
+  <ng-container [formGroupName]="inputSetting.propName">
+    <ng-container *ngFor="let item of inputSetting.items">
       <ng-container *ngIf="{ 
-        elem: dfFormGroup.get([setting.propName, item.name]) 
+        elem: cfFormGroup.get([inputSetting.propName, item.name]) 
       }; let info">
         <label [for]="item.name" *ngIf="item.args['alias']">{{item.args['alias']}}</label>
         <div class="d-block cbList">
@@ -40,4 +40,4 @@
       </ng-container>
     </ng-container> 
   </ng-container>
-</div>
+</ng-container>

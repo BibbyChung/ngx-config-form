@@ -8,8 +8,8 @@ import { FormGroup } from '@angular/forms';
 })
 export class ButtonComponent implements OnInit {
 
-  @Input() dfFormGroup: FormGroup;
-  @Input() class: string;
+  @Input() cfFormGroup: FormGroup;
+  @Input() class = '';
   @Input() isDebug: 'Y' | 'N' = 'N';
   @Output() click = new EventEmitter();
 
@@ -21,7 +21,7 @@ export class ButtonComponent implements OnInit {
   trigger(event: MouseEvent) {
     event.stopImmediatePropagation();
 
-    if (this.dfFormGroup.invalid) {
+    if (this.cfFormGroup.invalid) {
       return;
     }
 

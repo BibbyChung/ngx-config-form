@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import { CfValidator, ISetting, EnumSettingType, IConvertor } from './ngx-config-form-fake/ngx-config-form-fake.module';
-import { CfValidator, ISetting, EnumSettingType, IConvertor } from 'ngx-config-form';
+// import { CfValidator, IInputSetting, IConverter } from './ngx-config-form-fake/ngx-config-form-fake.module';
+import { CfValidator, IInputSetting, IConverter } from 'ngx-config-form';
 
-class DateConvertor implements IConvertor {
+class DateConverter implements IConverter {
   private operator0 = '-';
   private operator1 = '/';
   in(v: string, args?: any) {
@@ -15,7 +15,6 @@ class DateConvertor implements IConvertor {
     return v.replace(r, this.operator1);
   }
 }
-
 
 @Component({
   selector: 'app-root',
@@ -45,19 +44,19 @@ export class AppComponent {
     password: ''
   };
 
-  dfFormGroup: FormGroup;
-  dfSettings: ISetting[];
+  cfFormGroup: FormGroup;
+  cfInputSettings: IInputSetting[];
 
   constructor(private fb: FormBuilder) {
-    this.dfFormGroup = this.fb.group({});
+    this.cfFormGroup = this.fb.group({});
     this.init();
   }
 
   init(): any {
-    this.dfSettings = [
+    this.cfInputSettings = [
       {
         propName: 'id',
-        type: EnumSettingType.hidden,
+        type: 'hidden',
         validators: {},
         args: {},
         items: [
@@ -71,7 +70,7 @@ export class AppComponent {
       },
       {
         propName: 'title',
-        type: EnumSettingType.text,
+        type: 'text',
         validators: {},
         args: {},
         items: [
@@ -138,10 +137,10 @@ export class AppComponent {
       },
       {
         propName: 'date',
-        type: EnumSettingType.text,
+        type: 'text',
         validators: {},
         args: {},
-        convertor: new DateConvertor(),
+        converter: new DateConverter(),
         items: [
           {
             name: 'date',
@@ -168,7 +167,7 @@ export class AppComponent {
       },
       {
         propName: 'sex',
-        type: EnumSettingType.radio,
+        type: 'radio',
         validators: {},
         args: {},
         items: [
@@ -194,7 +193,7 @@ export class AppComponent {
       },
       {
         propName: 'productions',
-        type: EnumSettingType.checkbox,
+        type: 'checkbox',
         validators: {},
         args: {},
         items: [
@@ -220,7 +219,7 @@ export class AppComponent {
       },
       {
         propName: 'pwd',
-        type: EnumSettingType.password,
+        type: 'password',
         validators: {},
         args: {},
         items: [
@@ -244,7 +243,7 @@ export class AppComponent {
       },
       {
         propName: 'password',
-        type: EnumSettingType.confirmPassword,
+        type: 'confirmPassword',
         validators: {
           'confirmPassword': {
             validator: CfValidator.confirmPassword('password_source', 'password_confirm'),

@@ -1,8 +1,8 @@
-<ng-container [formGroup]="dfFormGroup">
-  <ng-container [formGroupName]="setting.propName">
-    <ng-container *ngFor="let item of setting.items">
+<ng-container [formGroup]="cfFormGroup">
+  <ng-container [formGroupName]="inputSetting.propName">
+    <ng-container *ngFor="let item of inputSetting.items">
       <ng-container *ngIf="{ 
-        elem: dfFormGroup.get([setting.propName, item.name]) 
+        elem: cfFormGroup.get([inputSetting.propName, item.name]) 
       }; let info">
         
         <input type="hidden" [formControlName]="item.name" >   

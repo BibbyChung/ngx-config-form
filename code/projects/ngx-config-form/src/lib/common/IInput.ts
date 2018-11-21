@@ -1,7 +1,7 @@
 import { FormGroup } from '@angular/forms';
-import { ISetting } from './ISetting';
+import { IInputSetting } from './IInputSetting';
 
 export interface IInput {
-  dfFormGroup: FormGroup;
-  setting: ISetting;
+  cfFormGroup: FormGroup;
+  inputSetting: IInputSetting;
 }

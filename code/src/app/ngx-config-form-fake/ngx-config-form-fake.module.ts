@@ -43,8 +43,7 @@ import { ObjectKeysPipe } from '../../../projects/ngx-config-form/src/lib/pipes/
 })
 export class NgxConfigFormFakeModule { }
 
+export * from '../../../projects/ngx-config-form/src/lib/common/IConverter';
+export * from '../../../projects/ngx-config-form/src/lib/common/IInputSetting';
 export * from '../../../projects/ngx-config-form/src/lib/validators/cfValidator';
-export * from '../../../projects/ngx-config-form/src/lib/common/ISetting';
-export * from '../../../projects/ngx-config-form/src/lib/common/IConvertor';
-export * from '../../../projects/ngx-config-form/src/lib/common/EnumSettingType';
 
