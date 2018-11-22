@@ -20,17 +20,14 @@ export abstract class BaseInput implements IInput, OnInit, OnDestroy {
 
   constructor(protected host: IForm) { }
 
-  abstract ngOnInit(): void;
-  abstract ngOnDestroy(): void;
-
-  protected superInit() {
+  ngOnInit() {
     this.groupElem = this.cfFormGroup.get(this.propName);
     this.elem = this.cfFormGroup.get([this.propName, this.cfFormSetting[this.propName].items[0].name]);
 
     this.setNotify();
   }
 
-  protected superDestroy() {
+  ngOnDestroy() {
     if (!this.sbOb) {
       return;
     }

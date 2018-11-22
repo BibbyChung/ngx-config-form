@@ -23,11 +23,11 @@ export class HiddenComponent extends BaseInput implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    super.superInit();
+    super.ngOnInit();
   }
 
   ngOnDestroy(): void {
-    super.superDestroy();
+    super.ngOnDestroy();
   }
 
 }

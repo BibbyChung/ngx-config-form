@@ -25,11 +25,11 @@ export class ConfirmPasswordComponent extends BaseInput implements OnInit, OnDes
   }
 
   ngOnInit(): void {
-    super.superInit();
+    super.ngOnInit();
   }
 
   ngOnDestroy(): void {
-    this.superDestroy();
+    super.ngOnDestroy();
   }
 
 }

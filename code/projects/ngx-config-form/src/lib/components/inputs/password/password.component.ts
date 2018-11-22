@@ -25,11 +25,11 @@ export class PasswordComponent extends BaseInput implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    super.superInit();
+    super.ngOnInit();
   }
 
   ngOnDestroy(): void {
-    this.superDestroy();
+    super.ngOnDestroy();
   }
 
 }

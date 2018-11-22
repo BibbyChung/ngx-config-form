@@ -4,7 +4,7 @@ import { IForm } from '../../common/IForm';
 import { IFormSetting } from '../../common/IFormSetting';
 import { IInputValidatorSetting } from '../../common/IInputValidatorSetting';
 
-export const USER_PROFILE_VALUE_ACCESSOR: any = {
+const USER_PROFILE_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => FormComponent),
   multi: true
@@ -37,7 +37,6 @@ export class FormComponent implements ControlValueAccessor, OnInit, IForm {
 
   ngOnInit() {
     this.initFormGroupSetting();
-
   }
 
   writeValue(originObj: object): void {

@@ -25,14 +25,14 @@ export class CheckboxComponent extends BaseInput implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    super.superInit();
+    super.ngOnInit();
     if (this.elem.value) {
       this.result = this.elem.value.toString().split(',');
     }
   }
 
   ngOnDestroy(): void {
-    this.superDestroy();
+    super.ngOnDestroy();
   }
 
   chagne(event: Event, cb, value) {
