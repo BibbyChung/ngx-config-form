@@ -1,8 +1,8 @@
 <ng-container [formGroup]="cfFormGroup">
-  <ng-container [formGroupName]="inputSetting.propName">
-    <ng-container *ngFor="let item of inputSetting.items">
+  <ng-container [formGroupName]="propName">
+    <ng-container *ngFor="let item of cfFormSetting[propName].items">
       <ng-container *ngIf="{ 
-        elem: cfFormGroup.get([inputSetting.propName, item.name]) 
+        elem: cfFormGroup.get([propName, item.name]) 
       }; let info">
         <label [for]="item.name" *ngIf="item.args['alias']">{{item.args['alias']}}</label>
         <div class="d-block cbList">
@@ -25,7 +25,7 @@
         </small>
         
         <ng-container *ngIf="info.elem.dirty && info.elem.errors">
-          <small class="form-text text-danger" *ngFor="let vName of info.elem.errors | objectKeys">
+          <small class="form-text text-danger" *ngFor="let vName of ObjectUtil.keys(info.elem.errors)">
             {{item.validators[vName].msg}}
           </small>
         </ng-container>

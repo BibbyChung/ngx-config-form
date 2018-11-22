@@ -11,41 +11,53 @@
         [class]=''
         [isDebug]="true" 
         [cfFormGroup]="cfFormGroup" 
-        [cfInputSettings]="cfInputSettings" 
+        [cfFormSetting]="cfFormSetting" 
         [(ngModel)]="info">
 
-        <ng-container *ngFor="let inputSetting of cfInputSettings; let i=index">
+        <ng-container *ngFor="let propName of ObjectUtil.keys(cfFormSetting); let i=index">
 
             <!-- 'hidden' | 'text' | 'radio' | 'checkbox' | 'password' | 'confirm-password' -->
     
-            <cf-inputs-hidden *ngIf="inputSetting.type === 'hidden'"
+            <cf-inputs-hidden *ngIf="cfFormSetting[propName].type === 'hidden'"
+              [propName]="propName"
               [cfFormGroup]="cfFormGroup" 
-              [inputSetting]="inputSetting"></cf-inputs-hidden>
+              [cfFormSetting]="cfFormSetting"></cf-inputs-hidden>
             
-            <div class="form-group" *ngIf="inputSetting.type === 'text'">
+            <div class="form-group" *ngIf="cfFormSetting[propName].type === 'text'">
               <cf-inputs-text 
                 [class]="'form-control'"
+                [propName]="propName"
                 [cfFormGroup]="cfFormGroup" 
-                [inputSetting]="inputSetting"></cf-inputs-text>
+                [cfFormSetting]="cfFormSetting"></cf-inputs-text>
             </div>
 
-            <div class="form-group" *ngIf="inputSetting.type === 'password'">
+            <div class="form-group" *ngIf="cfFormSetting[propName].type === 'password'">
               <cf-inputs-password 
                 [class]="'form-control'"
+                [propName]="propName"
                 [cfFormGroup]="cfFormGroup" 
-                [inputSetting]="inputSetting"></cf-inputs-password>
+                [cfFormSetting]="cfFormSetting"></cf-inputs-password>
             </div>
     
-            <div class="form-group" *ngIf="inputSetting.type === 'radio'">
-              <cf-inputs-radio [cfFormGroup]="cfFormGroup" [inputSetting]="inputSetting"></cf-inputs-radio>
+            <div class="form-group" *ngIf="cfFormSetting[propName].type === 'radio'">
+              <cf-inputs-radio 
+                [propName]="propName"
+                [cfFormGroup]="cfFormGroup" 
+                [cfFormSetting]="cfFormSetting"></cf-inputs-radio>
             </div>
     
-            <div class="form-group" *ngIf="inputSetting.type === 'checkbox'">
-              <cf-inputs-checkbox [cfFormGroup]="cfFormGroup" [inputSetting]="inputSetting"></cf-inputs-checkbox>
+            <div class="form-group" *ngIf="cfFormSetting[propName].type === 'checkbox'">
+              <cf-inputs-checkbox 
+                [propName]="propName"
+                [cfFormGroup]="cfFormGroup" 
+                [cfFormSetting]="cfFormSetting"></cf-inputs-checkbox>
             </div>
     
-            <div class="form-group" *ngIf="inputSetting.type === 'confirmPassword'">
-              <cf-inputs-confirm-password [cfFormGroup]="cfFormGroup" [inputSetting]="inputSetting"></cf-inputs-confirm-password>
+            <div class="form-group" *ngIf="cfFormSetting[propName].type === 'confirmPassword'">
+              <cf-inputs-confirm-password 
+                [propName]="propName"
+                [cfFormGroup]="cfFormGroup" 
+                [cfFormSetting]="cfFormSetting"></cf-inputs-confirm-password>
             </div>
     
         </ng-container>

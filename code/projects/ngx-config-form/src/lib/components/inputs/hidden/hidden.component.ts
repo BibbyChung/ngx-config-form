@@ -2,7 +2,7 @@ import { Component, forwardRef, Inject, Input, OnDestroy, OnInit } from '@angula
 import { FormGroup } from '@angular/forms';
 import { BaseInput } from '../../../common/baseInput';
 import { IForm } from '../../../common/IForm';
-import { IInputSetting } from '../../../common/IInputSetting';
+import { IFormSetting } from '../../../common/IFormSetting';
 import { FormComponent } from '../../form/form.component';
 
 @Component({
@@ -12,8 +12,9 @@ import { FormComponent } from '../../form/form.component';
 })
 export class HiddenComponent extends BaseInput implements OnInit, OnDestroy {
 
+  @Input() propName: string;
+  @Input() cfFormSetting: IFormSetting;
   @Input() cfFormGroup: FormGroup;
-  @Input() inputSetting: IInputSetting;
 
   constructor(
     @Inject(forwardRef(() => FormComponent)) host: IForm

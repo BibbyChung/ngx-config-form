@@ -1,8 +1,8 @@
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { AsyncValidatorFn, ControlValueAccessor, FormBuilder, FormGroup, NG_VALUE_ACCESSOR, ValidatorFn } from '@angular/forms';
 import { IForm } from '../../common/IForm';
-import { IInputSetting } from '../../common/IInputSetting';
-import { IInputSettingValidator } from '../../common/IInputSettingValidator';
+import { IFormSetting } from '../../common/IFormSetting';
+import { IInputValidatorSetting } from '../../common/IInputValidatorSetting';
 
 export const USER_PROFILE_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -25,7 +25,7 @@ export class FormComponent implements ControlValueAccessor, OnInit, IForm {
 
   // private originObj = {};
 
-  @Input() cfInputSettings: IInputSetting[] = [];
+  @Input() cfFormSetting: IFormSetting = {};
   @Input() cfFormGroup: FormGroup;
   @Input() class = '';
   @Input() isDebug = false;
@@ -64,7 +64,7 @@ export class FormComponent implements ControlValueAccessor, OnInit, IForm {
     }
 
     let v = value;
-    const setting = this.cfInputSettings.filter(a => a.propName === key)[0];
+    const setting = this.cfFormSetting[key];
     if (setting.converter) {
       v = setting.converter.out(value);
     }
@@ -74,7 +74,8 @@ export class FormComponent implements ControlValueAccessor, OnInit, IForm {
   }
 
   private initFormGroupSetting() {
-    for (const setting of this.cfInputSettings) {
+    for (const propName of Object.keys(this.cfFormSetting)) {
+      const setting = this.cfFormSetting[propName];
       const g = {};
       for (const item of setting.items) {
         const itemValidatorInfo = this.getValidators(item.validators);
@@ -84,24 +85,25 @@ export class FormComponent implements ControlValueAccessor, OnInit, IForm {
       const groupValidatorInfo = this.getValidators(setting.validators);
       fbG.setValidators(groupValidatorInfo.validatorFns);
       fbG.setAsyncValidators(groupValidatorInfo.asyncValidatorFns);
-      this.cfFormGroup.setControl(setting.propName, fbG);
+      this.cfFormGroup.setControl(propName, fbG);
     }
   }
 
   private setFormGroupValue() {
-    for (const setting of this.cfInputSettings) {
+    for (const propName of Object.keys(this.cfFormSetting)) {
+      const setting = this.cfFormSetting[propName];
       for (const item of setting.items) {
         let value = this.data[item.name] || item.value || '';
         if (setting.converter) {
           value = setting.converter.in(value);
         }
-        const c = this.cfFormGroup.get([setting.propName, item.name]);
+        const c = this.cfFormGroup.get([propName, item.name]);
         c.setValue(value);
       }
     }
   }
 
-  private getValidators(validators: IInputSettingValidator) {
+  private getValidators(validators: IInputValidatorSetting) {
     const validatorFns: ValidatorFn[] = [];
     const asyncValidatorFns: AsyncValidatorFn[] = [];
     for (const key of Object.keys(validators)) {

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import { CfValidator, IInputSetting, IConverter } from './ngx-config-form-fake/ngx-config-form-fake.module';
-import { CfValidator, IInputSetting, IConverter } from 'ngx-config-form';
+import { CfValidator, IFormSetting, IConverter } from './ngx-config-form-fake/ngx-config-form-fake.module';
+// import { CfValidator, IFormSetting, IConverter } from 'ngx-config-form';
 
 class DateConverter implements IConverter {
   private operator0 = '-';
@@ -44,8 +44,10 @@ export class AppComponent {
     password: ''
   };
 
+  ObjectUtil = Object;
+
   cfFormGroup: FormGroup;
-  cfInputSettings: IInputSetting[];
+  cfFormSetting: IFormSetting;
 
   constructor(private fb: FormBuilder) {
     this.cfFormGroup = this.fb.group({});
@@ -53,9 +55,8 @@ export class AppComponent {
   }
 
   init(): any {
-    this.cfInputSettings = [
-      {
-        propName: 'id',
+    this.cfFormSetting = {
+      id: {
         type: 'hidden',
         validators: {},
         args: {},
@@ -68,8 +69,7 @@ export class AppComponent {
           }
         ]
       },
-      {
-        propName: 'title',
+      title: {
         type: 'text',
         validators: {},
         args: {},
@@ -135,8 +135,7 @@ export class AppComponent {
           }
         ]
       },
-      {
-        propName: 'date',
+      date: {
         type: 'text',
         validators: {},
         args: {},
@@ -165,8 +164,7 @@ export class AppComponent {
           }
         ]
       },
-      {
-        propName: 'sex',
+      sex: {
         type: 'radio',
         validators: {},
         args: {},
@@ -191,8 +189,7 @@ export class AppComponent {
             }
           }]
       },
-      {
-        propName: 'productions',
+      productions: {
         type: 'checkbox',
         validators: {},
         args: {},
@@ -217,8 +214,7 @@ export class AppComponent {
             }
           }]
       },
-      {
-        propName: 'pwd',
+      pwd: {
         type: 'password',
         validators: {},
         args: {},
@@ -241,8 +237,7 @@ export class AppComponent {
           }
         ]
       },
-      {
-        propName: 'password',
+      password: {
         type: 'confirmPassword',
         validators: {
           'confirmPassword': {
@@ -287,7 +282,7 @@ export class AppComponent {
           }
         ]
       }
-    ];
+    };
   }
 
   gogogo($event) {

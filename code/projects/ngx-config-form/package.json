@@ -1,6 +1,6 @@
 {
   "name": "ngx-config-form",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "use configuration to generate form",
   "types": "./ngx-config-form.d.ts",
   "licenses": [

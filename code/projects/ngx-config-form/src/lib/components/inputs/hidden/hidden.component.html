@@ -1,8 +1,8 @@
 <ng-container [formGroup]="cfFormGroup">
-  <ng-container [formGroupName]="inputSetting.propName">
-    <ng-container *ngFor="let item of inputSetting.items">
+  <ng-container [formGroupName]="propName">
+    <ng-container *ngFor="let item of cfFormSetting[propName].items">
       <ng-container *ngIf="{ 
-        elem: cfFormGroup.get([inputSetting.propName, item.name]) 
+        elem: cfFormGroup.get([propName, item.name]) 
       }; let info">
         
         <input type="hidden" [formControlName]="item.name" >   

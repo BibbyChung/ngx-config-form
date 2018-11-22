@@ -10,11 +10,9 @@ import { HiddenComponent } from '../../../projects/ngx-config-form/src/lib/compo
 import { PasswordComponent } from '../../../projects/ngx-config-form/src/lib/components/inputs/password/password.component';
 import { RadioComponent } from '../../../projects/ngx-config-form/src/lib/components/inputs/radio/radio.component';
 import { TextComponent } from '../../../projects/ngx-config-form/src/lib/components/inputs/text/text.component';
-import { ObjectKeysPipe } from '../../../projects/ngx-config-form/src/lib/pipes/object-keys.pipe';
 
 @NgModule({
   declarations: [
-    ObjectKeysPipe,
     CheckboxComponent,
     ConfirmPasswordComponent,
     HiddenComponent,
@@ -44,6 +42,6 @@ import { ObjectKeysPipe } from '../../../projects/ngx-config-form/src/lib/pipes/
 export class NgxConfigFormFakeModule { }
 
 export * from '../../../projects/ngx-config-form/src/lib/common/IConverter';
-export * from '../../../projects/ngx-config-form/src/lib/common/IInputSetting';
+export * from '../../../projects/ngx-config-form/src/lib/common/IFormSetting';
 export * from '../../../projects/ngx-config-form/src/lib/validators/cfValidator';
 

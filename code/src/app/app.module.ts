@@ -15,8 +15,8 @@ import { NgxConfigFormFakeModule } from './ngx-config-form-fake/ngx-config-form-
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxConfigFormModule,
-    // NgxConfigFormFakeModule,
+    // NgxConfigFormModule,
+    NgxConfigFormFakeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

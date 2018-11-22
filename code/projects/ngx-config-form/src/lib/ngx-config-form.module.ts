@@ -10,11 +10,9 @@ import { HiddenComponent } from './components/inputs/hidden/hidden.component';
 import { PasswordComponent } from './components/inputs/password/password.component';
 import { RadioComponent } from './components/inputs/radio/radio.component';
 import { TextComponent } from './components/inputs/text/text.component';
-import { ObjectKeysPipe } from './pipes/object-keys.pipe';
 
 @NgModule({
   declarations: [
-    ObjectKeysPipe,
     CheckboxComponent,
     ConfirmPasswordComponent,
     HiddenComponent,

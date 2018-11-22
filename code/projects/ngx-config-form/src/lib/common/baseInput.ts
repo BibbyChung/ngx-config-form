@@ -3,25 +3,29 @@ import { AbstractControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { IForm } from './IForm';
 import { IInput } from './IInput';
-import { IInputSetting } from './IInputSetting';
+import { IFormSetting } from './IFormSetting';
 
 export abstract class BaseInput implements IInput, OnInit, OnDestroy {
 
+  abstract propName: string;
+  abstract cfFormSetting: IFormSetting;
   abstract cfFormGroup: FormGroup;
-  abstract inputSetting: IInputSetting;
 
   protected groupElem: AbstractControl;
   protected elem: AbstractControl;
 
   private sbOb: Subscription;
+
+  ObjectUtil = Object;
+
   constructor(protected host: IForm) { }
 
   abstract ngOnInit(): void;
   abstract ngOnDestroy(): void;
 
   protected superInit() {
-    this.groupElem = this.cfFormGroup.get(this.inputSetting.propName);
-    this.elem = this.cfFormGroup.get([this.inputSetting.propName, this.inputSetting.items[0].name]);
+    this.groupElem = this.cfFormGroup.get(this.propName);
+    this.elem = this.cfFormGroup.get([this.propName, this.cfFormSetting[this.propName].items[0].name]);
 
     this.setNotify();
   }
@@ -35,7 +39,7 @@ export abstract class BaseInput implements IInput, OnInit, OnDestroy {
 
   private setNotify(): any {
     this.sbOb = this.elem.valueChanges.subscribe(v => {
-      this.host.notifyValueChange(this.inputSetting.propName, v);
+      this.host.notifyValueChange(this.propName, v);
     });
   }
 }
