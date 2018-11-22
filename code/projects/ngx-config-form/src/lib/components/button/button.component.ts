@@ -11,7 +11,7 @@ export class ButtonComponent implements OnInit {
   @Input() cfFormGroup: FormGroup;
   @Input() class = '';
   @Input() isDebug: 'Y' | 'N' = 'N';
-  @Output() click = new EventEmitter();
+  @Output() dfClick = new EventEmitter();
 
   constructor() { }
 
@@ -19,13 +19,14 @@ export class ButtonComponent implements OnInit {
   }
 
   trigger(event: MouseEvent) {
+    event.preventDefault();
     event.stopImmediatePropagation();
 
     if (this.cfFormGroup.invalid) {
       return;
     }
 
-    this.click.emit(event);
+    this.dfClick.emit(event);
   }
 
 }
