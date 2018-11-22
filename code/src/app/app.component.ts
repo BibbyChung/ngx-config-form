@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CfValidator, IFormSetting, IConverter } from './ngx-config-form-fake/ngx-config-form-fake.module';
-// import { CfValidator, IFormSetting, IConverter } from 'ngx-config-form';
+// import { CfValidator, IFormSetting, IConverter } from './ngx-config-form-fake/ngx-config-form-fake.module';
+import { CfValidator, IFormSetting, IConverter } from 'ngx-config-form';
 
 class DateConverter implements IConverter {
   private operator0 = '-';

@@ -11,22 +11,25 @@ export class ButtonComponent implements OnInit {
   @Input() cfFormGroup: FormGroup;
   @Input() class = '';
   @Input() isDebug: 'Y' | 'N' = 'N';
-  @Output() dfClick = new EventEmitter();
+  @Output() click = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  trigger(event: MouseEvent) {
+  clickIt(event: MouseEvent) {
     event.preventDefault();
     event.stopImmediatePropagation();
 
+    if (!this.cfFormGroup.dirty) {
+      return;
+    }
     if (this.cfFormGroup.invalid) {
       return;
     }
 
-    this.dfClick.emit(event);
+    this.click.emit(event);
   }
 
 }
