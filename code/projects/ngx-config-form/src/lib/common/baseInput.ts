@@ -1,9 +1,10 @@
 import { OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import { IForm } from './IForm';
-import { IInput } from './IInput';
 import { IFormSetting } from './IFormSetting';
+import { IInput } from './IInput';
 
 export abstract class BaseInput implements IInput, OnInit, OnDestroy {
 
@@ -36,8 +37,10 @@ export abstract class BaseInput implements IInput, OnInit, OnDestroy {
   }
 
   private setNotify(): any {
-    this.sbOb = this.elem.valueChanges.subscribe(v => {
-      this.cfForm.notifyValueChange(this.propName, v);
+    this.sbOb = this.elem.statusChanges.pipe(
+      filter(a => a === 'VALID'),
+    ).subscribe(a => {
+      this.cfForm.notifyValueChange(this.propName, this.elem.value);
     });
   }
 }
