@@ -7,7 +7,6 @@ import { FormComponent } from '../../../projects/ngx-config-form/src/lib/compone
 import { CheckboxComponent } from '../../../projects/ngx-config-form/src/lib/components/inputs/checkbox/checkbox.component';
 import { ConfirmPasswordComponent } from '../../../projects/ngx-config-form/src/lib/components/inputs/confirm-password/confirm-password.component';
 import { HiddenComponent } from '../../../projects/ngx-config-form/src/lib/components/inputs/hidden/hidden.component';
-import { PasswordComponent } from '../../../projects/ngx-config-form/src/lib/components/inputs/password/password.component';
 import { RadioComponent } from '../../../projects/ngx-config-form/src/lib/components/inputs/radio/radio.component';
 import { TextComponent } from '../../../projects/ngx-config-form/src/lib/components/inputs/text/text.component';
 
@@ -16,7 +15,6 @@ import { TextComponent } from '../../../projects/ngx-config-form/src/lib/compone
     CheckboxComponent,
     ConfirmPasswordComponent,
     HiddenComponent,
-    PasswordComponent,
     RadioComponent,
     TextComponent,
     ButtonComponent,
@@ -32,7 +30,6 @@ import { TextComponent } from '../../../projects/ngx-config-form/src/lib/compone
     CheckboxComponent,
     ConfirmPasswordComponent,
     HiddenComponent,
-    PasswordComponent,
     RadioComponent,
     TextComponent,
     ButtonComponent,

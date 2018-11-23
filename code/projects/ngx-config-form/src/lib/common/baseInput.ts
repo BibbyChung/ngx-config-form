@@ -8,6 +8,7 @@ import { IFormSetting } from './IFormSetting';
 export abstract class BaseInput implements IInput, OnInit, OnDestroy {
 
   abstract propName: string;
+  abstract cfForm: IForm;
   abstract cfFormSetting: IFormSetting;
   abstract cfFormGroup: FormGroup;
 
@@ -18,7 +19,7 @@ export abstract class BaseInput implements IInput, OnInit, OnDestroy {
 
   ObjectUtil = Object;
 
-  constructor(protected host: IForm) { }
+  constructor() { }
 
   ngOnInit() {
     this.groupElem = this.cfFormGroup.get(this.propName);
@@ -36,7 +37,7 @@ export abstract class BaseInput implements IInput, OnInit, OnDestroy {
 
   private setNotify(): any {
     this.sbOb = this.elem.valueChanges.subscribe(v => {
-      this.host.notifyValueChange(this.propName, v);
+      this.cfForm.notifyValueChange(this.propName, v);
     });
   }
 }

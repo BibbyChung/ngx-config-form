@@ -11,6 +11,8 @@ export class ButtonComponent implements OnInit {
   @Input() cfFormGroup: FormGroup;
   @Input() class = '';
   @Input() isDebug: 'Y' | 'N' = 'N';
+  @Input() type: 'button' | 'submit' | 'reset' = 'button';
+
   @Output() click = new EventEmitter();
 
   constructor() { }

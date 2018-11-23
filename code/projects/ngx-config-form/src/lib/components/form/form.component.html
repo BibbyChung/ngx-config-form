@@ -1,4 +1,7 @@
-  <form novalidate *ngIf="isReady" [class]="class" [formGroup]="cfFormGroup">
+  <form *ngIf="isReady"
+    [class]="class" 
+    [formGroup]="cfFormGroup"
+    novalidate>
 
     <ng-content></ng-content>
 

@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import { Component, forwardRef, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { AsyncValidatorFn, ControlValueAccessor, FormBuilder, FormGroup, NG_VALUE_ACCESSOR, ValidatorFn } from '@angular/forms';
 import { IForm } from '../../common/IForm';
 import { IFormSetting } from '../../common/IFormSetting';
@@ -20,15 +20,13 @@ export class FormComponent implements ControlValueAccessor, OnInit, IForm {
 
   isReady = false;
 
-  onChange: (value) => {};
-  onTouched: () => {};
-
-  // private originObj = {};
-
   @Input() cfFormSetting: IFormSetting = {};
   @Input() cfFormGroup: FormGroup;
   @Input() class = '';
   @Input() isDebug = false;
+
+  private onChange: (value) => {};
+  private onTouched: () => {};
 
   private data: object;
 
@@ -52,7 +50,7 @@ export class FormComponent implements ControlValueAccessor, OnInit, IForm {
     this.onChange = fn;
   }
   registerOnTouched(fn: any): void {
-    this.onChange = fn;
+    this.onTouched = fn;
   }
   setDisabledState?(isDisabled: boolean): void {
   }

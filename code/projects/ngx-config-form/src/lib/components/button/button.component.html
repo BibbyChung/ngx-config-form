@@ -1,4 +1,5 @@
-<button [class]="class"
+<button [type]="type"
+  [class]="class"
   [ngClass]="{'disabled': !(cfFormGroup.dirty && cfFormGroup.valid)}"
   (click)="clickIt($event)">
   <ng-content></ng-content>
