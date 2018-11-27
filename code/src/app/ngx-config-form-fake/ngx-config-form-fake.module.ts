@@ -9,6 +9,7 @@ import { ConfirmPasswordComponent } from '../../../projects/ngx-config-form/src/
 import { HiddenComponent } from '../../../projects/ngx-config-form/src/lib/components/inputs/hidden/hidden.component';
 import { RadioComponent } from '../../../projects/ngx-config-form/src/lib/components/inputs/radio/radio.component';
 import { TextComponent } from '../../../projects/ngx-config-form/src/lib/components/inputs/text/text.component';
+import { TextareaComponent } from '../../../projects/ngx-config-form/src/lib/components/inputs/textarea/textarea.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { TextComponent } from '../../../projects/ngx-config-form/src/lib/compone
     HiddenComponent,
     RadioComponent,
     TextComponent,
+    TextareaComponent,
     ButtonComponent,
     FormComponent
   ],
@@ -32,6 +34,7 @@ import { TextComponent } from '../../../projects/ngx-config-form/src/lib/compone
     HiddenComponent,
     RadioComponent,
     TextComponent,
+    TextareaComponent,
     ButtonComponent,
     FormComponent
   ]

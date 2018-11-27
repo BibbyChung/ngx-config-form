@@ -5,15 +5,16 @@ import { IForm } from '../../../common/IForm';
 import { IFormSetting } from '../../../common/IFormSetting';
 
 @Component({
-  selector: 'cf-inputs-text',
-  templateUrl: './text.component.html',
-  styleUrls: ['./text.component.scss']
+  selector: 'cf-inputs-textarea',
+  templateUrl: './textarea.component.html',
+  styleUrls: ['./textarea.component.scss']
 })
-export class TextComponent extends BaseInput implements OnInit, OnDestroy {
+export class TextareaComponent extends BaseInput implements OnInit, OnDestroy {
 
+  @Input() rows = 3;
   @Input() isReadOnly = false;
-  @Input() type = 'text';
   @Input() class: string;
+  
   @Input() propName: string;
   @Input() cfForm: IForm;
   @Input() cfFormSetting: IFormSetting;

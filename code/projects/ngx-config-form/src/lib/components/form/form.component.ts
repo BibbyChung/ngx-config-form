@@ -25,6 +25,8 @@ export class FormComponent implements ControlValueAccessor, OnInit, IForm {
   @Input() class = '';
   @Input() isDebug = false;
 
+  @Output() cfFormReady = new EventEmitter<void>();
+
   private onChange: (value) => {};
   private onTouched: () => {};
 
@@ -42,8 +44,12 @@ export class FormComponent implements ControlValueAccessor, OnInit, IForm {
       return;
     }
     this.data = originObj;
-    this.isReady = true;
     this.setFormGroupValue();
+    this.setReady();
+  }
+  private setReady(): any {
+    this.isReady = true;
+    this.cfFormReady.emit();
   }
 
   registerOnChange(fn: any): void {
@@ -63,11 +69,15 @@ export class FormComponent implements ControlValueAccessor, OnInit, IForm {
     let v = value;
     const setting = this.cfFormSetting[key];
     if (setting.converter) {
-      v = setting.converter.out(value);
+      v = setting.converter.from(value);
     }
 
     this.data[key] = v;
     this.onChange(this.data);
+  }
+
+  onReady(): EventEmitter<void> {
+    return this.cfFormReady;
   }
 
   private initFormGroupSetting() {
@@ -92,7 +102,7 @@ export class FormComponent implements ControlValueAccessor, OnInit, IForm {
       for (const item of setting.items) {
         let value = this.data[item.name] || item.value || '';
         if (setting.converter) {
-          value = setting.converter.in(value);
+          value = setting.converter.to(value);
         }
         const c = this.cfFormGroup.get([propName, item.name]);
         c.setValue(value);

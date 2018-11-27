@@ -9,6 +9,7 @@ import { ConfirmPasswordComponent } from './components/inputs/confirm-password/c
 import { HiddenComponent } from './components/inputs/hidden/hidden.component';
 import { RadioComponent } from './components/inputs/radio/radio.component';
 import { TextComponent } from './components/inputs/text/text.component';
+import { TextareaComponent } from './components/inputs/textarea/textarea.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { TextComponent } from './components/inputs/text/text.component';
     HiddenComponent,
     RadioComponent,
     TextComponent,
+    TextareaComponent,
     ButtonComponent,
     FormComponent
   ],
@@ -32,6 +34,7 @@ import { TextComponent } from './components/inputs/text/text.component';
     HiddenComponent,
     RadioComponent,
     TextComponent,
+    TextareaComponent,
     ButtonComponent,
     FormComponent
   ]

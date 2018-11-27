@@ -6,11 +6,11 @@ import { CfValidator, IFormSetting, IConverter } from './ngx-config-form-fake/ng
 class DateConverter implements IConverter {
   private operator0 = '-';
   private operator1 = '/';
-  in(v: string, args?: any) {
+  to(v: string, args?: any) {
     const r = new RegExp(this.operator1, 'g');
     return `${v}`.replace(r, this.operator0);
   }
-  out(v: string, args?: any) {
+  from(v: string, args?: any) {
     const r = new RegExp(this.operator0, 'g');
     return v.replace(r, this.operator1);
   }
@@ -37,9 +37,10 @@ export class AppComponent {
   info = {
     id: 666,
     title: 'oo',
+    description: 'dd',
     date: '2018/10/11',
     sex: 'female',
-    productions: 'windows,android',
+    productions: 'android,windows',
     pwd: '',
     password: ''
   };
@@ -135,6 +136,29 @@ export class AppComponent {
           }
         ]
       },
+      description: {
+        type: 'textarea',
+        validators: {},
+        args: {},
+        items: [
+          {
+            name: 'description',
+            value: '',
+            validators: {
+              'required': {
+                validator: Validators.required,
+                isPromiseOrObservable: false,
+                msg: '請輸入描述'
+              }
+            },
+            args: {
+              alias: '描述',
+              placeholder: '描述',
+              murmur: '這是描述'
+            }
+          }
+        ]
+      },
       date: {
         type: 'text',
         validators: {},
@@ -210,7 +234,8 @@ export class AppComponent {
               checkboxs: [
                 { value: 'ios', text: '蘋果' },
                 { value: 'android', text: 'android' },
-                { value: 'windows', text: '微軟' }]
+                { value: 'windows', text: '微軟' }
+              ]
             }
           }]
       },

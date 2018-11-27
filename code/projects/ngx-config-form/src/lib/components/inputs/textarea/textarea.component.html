@@ -5,15 +5,15 @@
         elem: cfFormGroup.get([propName, item.name]) 
       }; let info">
         <label [for]="item.name" *ngIf="item.args['alias']">{{item.args['alias']}}</label>
-        <input 
-          [type]="type" 
-          [class]="class" 
+        <textarea
+          [class]="class"
           [id]="item.name" 
           [placeholder]="item.args['placeholder']"
           [formControlName]="item.name" 
           [ngClass]="{ 'is-invalid': info.elem.dirty && info.elem.errors }"
           [readonly]="isReadOnly"
-        >
+          [rows]="rows"
+          ></textarea>
         <small class="form-text text-muted" *ngIf="item.args['murmur']">
           {{item.args['murmur']}}
         </small>

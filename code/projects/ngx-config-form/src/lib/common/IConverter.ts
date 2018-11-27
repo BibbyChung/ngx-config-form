@@ -1,4 +1,4 @@
 export interface IConverter {
-  in(v: any, args?: any): any;
-  out(v: any, args?: any): any;
+  to(v: any, args?: any): any;
+  from(v: any, args?: any): any;
 }
