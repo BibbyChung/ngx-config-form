@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CfValidator, IFormSetting, IConverter } from './ngx-config-form-fake/ngx-config-form-fake.module';
 // import { CfValidator, IFormSetting, IConverter } from 'ngx-config-form';
@@ -21,7 +21,7 @@ class DateConverter implements IConverter {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   title = 'ngx-config-form-app';
 
@@ -34,28 +34,48 @@ export class AppComponent {
     return JSON.stringify(this.info);
   }
 
-  info = {
-    id: 666,
-    title: 'oo',
-    description: 'dd',
-    date: '2018/10/11',
-    sex: 'female',
-    productions: 'android,windows',
-    pwd: '',
-    password: ''
-  };
-
   ObjectUtil = Object;
 
+  info = {};
   cfFormGroup: FormGroup;
   cfFormSetting: IFormSetting;
 
   constructor(private fb: FormBuilder) {
     this.cfFormGroup = this.fb.group({});
-    this.init();
+    this.setSetting();
   }
 
-  init(): any {
+  ngOnInit(): void {
+    this.setData(null);
+  }
+
+  commitIt(event: Event) {
+    console.log(this.info);
+    this.cfFormGroup.reset();
+    this.setData(null);
+    console.log('done...');
+  }
+
+  setData(event: Event) {
+    if (event) {
+      event.preventDefault();
+    }
+
+    this.info = {
+      id: 666,
+      title: 'oo',
+      description: 'dd',
+      date: '2018/10/11',
+      sex: 'female',
+      productions: 'android,windows',
+      pwd: '',
+      password: ''
+    };
+
+    console.log('reset...');
+  }
+
+  private setSetting(): any {
     this.cfFormSetting = {
       id: {
         type: 'hidden',
@@ -309,9 +329,4 @@ export class AppComponent {
       }
     };
   }
-
-  gogogo(event) {
-    console.log('gogogog...');
-  }
-
 }
