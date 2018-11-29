@@ -22,8 +22,7 @@
             <cf-inputs-hidden *ngIf="cfFormSetting[propName].type === 'hidden'"
               [cfForm]="f"
               [propName]="propName"
-              [cfFormGroup]="cfFormGroup" 
-              [cfFormSetting]="cfFormSetting"></cf-inputs-hidden>
+              ></cf-inputs-hidden>
             
             <div class="form-group" *ngIf="cfFormSetting[propName].type === 'text'">
               <cf-inputs-text 
@@ -31,8 +30,7 @@
                 [type]="'text'"
                 [class]="'form-control'"
                 [propName]="propName"
-                [cfFormGroup]="cfFormGroup" 
-                [cfFormSetting]="cfFormSetting"></cf-inputs-text>
+                ></cf-inputs-text>
             </div>
 
             <div class="form-group" *ngIf="cfFormSetting[propName].type === 'textarea'">
@@ -41,8 +39,7 @@
                 [rows]="6"
                 [class]="'form-control'"
                 [propName]="propName"
-                [cfFormGroup]="cfFormGroup" 
-                [cfFormSetting]="cfFormSetting"></cf-inputs-textarea>
+                ></cf-inputs-textarea>
             </div>
 
             <div class="form-group" *ngIf="cfFormSetting[propName].type === 'password'">
@@ -51,16 +48,14 @@
                 [type]="'password'"
                 [class]="'form-control'"
                 [propName]="propName"
-                [cfFormGroup]="cfFormGroup" 
-                [cfFormSetting]="cfFormSetting"></cf-inputs-text>
+                ></cf-inputs-text>
             </div>
     
             <div class="form-group" *ngIf="cfFormSetting[propName].type === 'radio'">
               <cf-inputs-radio 
                 [cfForm]="f"
                 [propName]="propName"
-                [cfFormGroup]="cfFormGroup" 
-                [cfFormSetting]="cfFormSetting"></cf-inputs-radio>
+                ></cf-inputs-radio>
             </div>
     
             <div class="form-group" *ngIf="cfFormSetting[propName].type === 'checkbox'">
@@ -68,16 +63,14 @@
                 [cfForm]="f"
                 [isMultiple]="true"
                 [propName]="propName"
-                [cfFormGroup]="cfFormGroup" 
-                [cfFormSetting]="cfFormSetting"></cf-inputs-checkbox>
+                ></cf-inputs-checkbox>
             </div>
     
             <div class="form-group" *ngIf="cfFormSetting[propName].type === 'confirmPassword'">
               <cf-inputs-confirm-password 
                 [cfForm]="f"
                 [propName]="propName"
-                [cfFormGroup]="cfFormGroup" 
-                [cfFormSetting]="cfFormSetting"></cf-inputs-confirm-password>
+                ></cf-inputs-confirm-password>
             </div>
     
         </ng-container>

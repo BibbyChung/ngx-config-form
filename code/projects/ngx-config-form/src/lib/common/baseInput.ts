@@ -1,4 +1,4 @@
-import { OnDestroy, OnInit } from '@angular/core';
+import { Input, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -9,9 +9,20 @@ import { IInput } from './IInput';
 export abstract class BaseInput implements IInput, OnInit, OnDestroy {
 
   abstract propName: string;
-  abstract cfForm: IForm;
-  abstract cfFormSetting: IFormSetting;
-  abstract cfFormGroup: FormGroup;
+
+  _cfForm: IForm;
+  @Input()
+  set cfForm(v: IForm) {
+    this._cfForm = v;
+    this.cfFormSetting = v.cfFormSetting;
+    this.cfFormGroup = v.cfFormGroup;
+  }
+  get cfForm() {
+    return this._cfForm;
+  }
+
+  cfFormSetting: IFormSetting;
+  cfFormGroup: FormGroup;
 
   protected groupElem: AbstractControl;
   protected elem: AbstractControl;
