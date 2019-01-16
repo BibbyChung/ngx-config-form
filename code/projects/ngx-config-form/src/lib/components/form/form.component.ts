@@ -19,6 +19,7 @@ const USER_PROFILE_VALUE_ACCESSOR: any = {
 export class FormComponent implements ControlValueAccessor, OnInit, IForm {
 
   isReady = false;
+  private errorPropName = '_errMsg_';
 
   @Input() cfFormSetting: IFormSetting = {};
   @Input() cfFormGroup: FormGroup;
@@ -28,7 +29,7 @@ export class FormComponent implements ControlValueAccessor, OnInit, IForm {
   @Output() cfFormReady = new EventEmitter<void>();
 
   private onChange: (value) => {};
-  private onTouched: () => {};
+  private onTouched: (value) => {};
 
   private data: object;
 
@@ -71,8 +72,26 @@ export class FormComponent implements ControlValueAccessor, OnInit, IForm {
     if (setting.converter) {
       v = setting.converter.from(value);
     }
-
     this.data[key] = v;
+
+    this.onChange(this.data);
+  }
+
+  notifyValidatedInfo(isValid: boolean, propName: string, errorObj: object) {
+    if (!this.onChange) {
+      return;
+    }
+
+    if (isValid) {
+      const oo = this.data[this.errorPropName] || {};
+      delete oo[propName];
+      this.data[this.errorPropName] = oo;
+    } else {
+      const obj = this.data[this.errorPropName] || {};
+      obj[propName] = errorObj;
+      this.data[this.errorPropName] = obj;
+    }
+
     this.onChange(this.data);
   }
 

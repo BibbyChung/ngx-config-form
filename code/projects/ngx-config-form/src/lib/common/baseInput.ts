@@ -5,6 +5,7 @@ import { filter } from 'rxjs/operators';
 import { IForm } from './IForm';
 import { IFormSetting } from './IFormSetting';
 import { IInput } from './IInput';
+import { IInputValidatorSetting } from './IInputValidatorSetting';
 
 export abstract class BaseInput implements IInput, OnInit, OnDestroy {
 
@@ -26,8 +27,9 @@ export abstract class BaseInput implements IInput, OnInit, OnDestroy {
 
   protected groupElem: AbstractControl;
   protected elem: AbstractControl;
+  protected elemValidators: IInputValidatorSetting;
 
-  private sbOb: Subscription;
+  private sbObs: Subscription[] = [];
 
   ObjectUtil = Object;
 
@@ -36,22 +38,44 @@ export abstract class BaseInput implements IInput, OnInit, OnDestroy {
   ngOnInit() {
     this.groupElem = this.cfFormGroup.get(this.propName);
     this.elem = this.cfFormGroup.get([this.propName, this.cfFormSetting[this.propName].items[0].name]);
+    this.elemValidators = this.cfFormSetting[this.propName].items[0].validators;
 
     this.setNotify();
   }
 
   ngOnDestroy() {
-    if (!this.sbOb) {
-      return;
+    for (const ob of this.sbObs) {
+      ob.unsubscribe();
     }
-    this.sbOb.unsubscribe();
   }
 
   private setNotify(): any {
-    this.sbOb = this.elem.statusChanges.pipe(
-      filter(a => a === 'VALID'),
-    ).subscribe(a => {
-      this.cfForm.notifyValueChange(this.propName, this.elem.value);
-    });
+    const arr = [
+      // set value
+      this.elem.statusChanges
+        .pipe(
+          filter(a => a === 'VALID'),
+        ).subscribe(a => {
+          this.cfForm.notifyValueChange(this.propName, this.elem.value);
+        }),
+      // send error message
+      this.elem.statusChanges
+        .subscribe(a => {
+          const isValid = a === 'VALID';
+
+          if (!isValid && this.elem.errors) {
+            const errorObj = {};
+            for (const key of Object.keys(this.elem.errors)) {
+              errorObj[key] = this.elemValidators[key].msg;
+            }
+            this.cfForm.notifyValidatedInfo(isValid, this.propName, errorObj);
+          }
+
+          if (isValid) {
+            this.cfForm.notifyValidatedInfo(isValid, this.propName);
+          }
+        })
+    ];
+    this.sbObs.push(...arr);
   }
 }

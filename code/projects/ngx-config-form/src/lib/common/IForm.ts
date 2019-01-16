@@ -7,4 +7,5 @@ export interface IForm {
   cfFormGroup: FormGroup;
   onReady(): EventEmitter<void>;
   notifyValueChange(key: string, value: any);
+  notifyValidatedInfo(isValid: boolean, propName: string, errorObj?: object);
 }
