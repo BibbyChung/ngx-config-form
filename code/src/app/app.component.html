@@ -30,6 +30,7 @@
                 [type]="'text'"
                 [class]="'form-control'"
                 [propName]="propName"
+                [isShowErrorMsg]="false"
                 ></cf-inputs-text>
             </div>
 
@@ -39,6 +40,7 @@
                 [rows]="6"
                 [class]="'form-control'"
                 [propName]="propName"
+                [isShowErrorMsg]="true"
                 ></cf-inputs-textarea>
             </div>
 
@@ -48,6 +50,7 @@
                 [type]="'password'"
                 [class]="'form-control'"
                 [propName]="propName"
+                [isShowErrorMsg]="false"
                 ></cf-inputs-text>
             </div>
     
@@ -55,6 +58,7 @@
               <cf-inputs-radio 
                 [cfForm]="f"
                 [propName]="propName"
+                [isShowErrorMsg]="false"
                 ></cf-inputs-radio>
             </div>
     
@@ -63,6 +67,7 @@
                 [cfForm]="f"
                 [isMultiple]="true"
                 [propName]="propName"
+                [isShowErrorMsg]="false"
                 ></cf-inputs-checkbox>
             </div>
     
@@ -70,6 +75,7 @@
               <cf-inputs-confirm-password 
                 [cfForm]="f"
                 [propName]="propName"
+                [isShowErrorMsg]="false"
                 ></cf-inputs-confirm-password>
             </div>
     

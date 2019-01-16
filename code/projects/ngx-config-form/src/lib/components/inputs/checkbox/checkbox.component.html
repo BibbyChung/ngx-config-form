@@ -24,7 +24,7 @@
           {{item.args['murmur']}}
         </small>
         
-        <ng-container *ngIf="info.elem.dirty && info.elem.errors">
+        <ng-container *ngIf="isShowErrorMsg && info.elem.dirty && info.elem.errors">
           <small class="form-text text-danger" *ngFor="let vName of ObjectUtil.keys(info.elem.errors)">
             {{item.validators[vName].msg}}
           </small>

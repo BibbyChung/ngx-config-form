@@ -21,6 +21,7 @@ export abstract class BaseInput implements IInput, OnInit, OnDestroy {
   get cfForm() {
     return this._cfForm;
   }
+  @Input() isShowErrorMsg = true;
 
   cfFormSetting: IFormSetting;
   cfFormGroup: FormGroup;
