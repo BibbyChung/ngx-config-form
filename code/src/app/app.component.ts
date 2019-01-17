@@ -172,6 +172,39 @@ export class AppComponent implements OnInit {
           }
         ]
       },
+      oooo: {
+        type: 'text',
+        validators: {},
+        args: {},
+        items: [
+          {
+            name: 'oooo',
+            value: '',
+            validators: {
+              'required': {
+                validator: Validators.required,
+                isPromiseOrObservable: false,
+                msg: '請輸入名稱'
+              },
+              'mypattern1': {
+                validator: CfValidator.pattern('mypattern1', '1'),
+                msg: '要輸入1才可以',
+                isPromiseOrObservable: false
+              },
+              'mypattern2': {
+                validator: CfValidator.pattern('mypattern2', '2'),
+                msg: '要輸入2才可以',
+                isPromiseOrObservable: false
+              },
+            },
+            args: {
+              alias: '',
+              placeholder: '请输入您的账号',
+              murmur: ''
+            }
+          }
+        ]
+      },
       description: {
         type: 'textarea',
         validators: {},

@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { BaseInput } from '../../../common/baseInput';
+import { IErrorInfo } from '../../../common/IErrorInfo';
 import { IInputValidatorSetting } from '../../../common/IInputValidatorSetting';
 
 @Component({
@@ -40,7 +41,7 @@ export class ConfirmPasswordComponent extends BaseInput implements OnInit, OnDes
         const vKey = `${this.propName}_`;
 
         if (!isValid && this.groupElem.errors) {
-          const errorObj = {};
+          const errorObj: IErrorInfo = {};
           for (const key of Object.keys(this.groupElem.errors)) {
             errorObj[key] = {
               msg: this.groupElemValidators[key].msg,

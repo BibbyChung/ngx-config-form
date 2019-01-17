@@ -90,7 +90,7 @@ export class FormComponent implements ControlValueAccessor, OnInit, IForm {
     } else {
       const obj = this.data[this.errorPropName] || {};
       const oErrorObj = obj[key] || {};
-      obj[key] = Object.assign({ ...oErrorObj }, { ...info });
+      obj[key] = info;
       this.data[this.errorPropName] = obj;
     }
 
