@@ -1,5 +1,6 @@
-import { Component, forwardRef, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core';
 import { AsyncValidatorFn, ControlValueAccessor, FormBuilder, FormGroup, NG_VALUE_ACCESSOR, ValidatorFn } from '@angular/forms';
+import { IErrorInfo } from '../../common/IErrorInfo';
 import { IForm } from '../../common/IForm';
 import { IFormSetting } from '../../common/IFormSetting';
 import { IInputValidatorSetting } from '../../common/IInputValidatorSetting';
@@ -77,18 +78,19 @@ export class FormComponent implements ControlValueAccessor, OnInit, IForm {
     this.onChange(this.data);
   }
 
-  notifyValidatedInfo(isValid: boolean, propName: string, errorObj: object) {
+  notifyValidatedInfo(key: string, isValid: boolean, info?: IErrorInfo) {
     if (!this.onChange) {
       return;
     }
 
     if (isValid) {
-      const oo = this.data[this.errorPropName] || {};
-      delete oo[propName];
-      this.data[this.errorPropName] = oo;
+      const obj = this.data[this.errorPropName] || {};
+      delete obj[key];
+      this.data[this.errorPropName] = obj;
     } else {
       const obj = this.data[this.errorPropName] || {};
-      obj[propName] = errorObj;
+      const oErrorObj = obj[key] || {};
+      obj[key] = Object.assign({ ...oErrorObj }, { ...info });
       this.data[this.errorPropName] = obj;
     }
 

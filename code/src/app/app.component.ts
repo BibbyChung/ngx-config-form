@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CfValidator, IFormSetting, IConverter } from './ngx-config-form-fake/ngx-config-form-fake.module';
-// import { CfValidator, IFormSetting, IConverter } from 'ngx-config-form';
+// import { CfValidator, IFormSetting, IConverter, IErrorInfo } from 'ngx-config-form';
 
 class DateConverter implements IConverter {
   private operator0 = '-';
@@ -43,6 +43,22 @@ export class AppComponent implements OnInit {
   constructor(private fb: FormBuilder) {
     this.cfFormGroup = this.fb.group({});
     this.setSetting();
+  }
+
+  get errorMsg() {
+    const obj = this.info['_errMsg_'];
+    const arr = [];
+    if (obj) {
+      Object.keys(obj).forEach(prop => {
+        Object.keys(obj[prop]).forEach(propChild => {
+          const item = obj[prop][propChild];
+          if (item.dirty) {
+            arr.push(item['msg']);
+          }
+        });
+      });
+    }
+    return arr;
   }
 
   ngOnInit(): void {

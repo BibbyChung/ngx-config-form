@@ -1,5 +1,6 @@
 import { EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { IErrorInfo } from './IErrorInfo';
 import { IFormSetting } from './IFormSetting';
 
 export interface IForm {
@@ -7,5 +8,5 @@ export interface IForm {
   cfFormGroup: FormGroup;
   onReady(): EventEmitter<void>;
   notifyValueChange(key: string, value: any);
-  notifyValidatedInfo(isValid: boolean, propName: string, errorObj?: object);
+  notifyValidatedInfo(key: string, isValid: boolean, info?: IErrorInfo);
 }

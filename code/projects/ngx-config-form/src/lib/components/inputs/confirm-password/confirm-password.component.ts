@@ -37,17 +37,21 @@ export class ConfirmPasswordComponent extends BaseInput implements OnInit, OnDes
     this.ob = this.groupElem.statusChanges
       .subscribe(a => {
         const isValid = a === 'VALID';
+        const vKey = `${this.propName}_`;
 
         if (!isValid && this.groupElem.errors) {
           const errorObj = {};
           for (const key of Object.keys(this.groupElem.errors)) {
-            errorObj[key] = this.groupElemValidators[key].msg;
+            errorObj[key] = {
+              msg: this.groupElemValidators[key].msg,
+              dirty: this.groupElem.dirty,
+            };
           }
-          this.cfForm.notifyValidatedInfo(isValid, this.propName, errorObj);
+          this.cfForm.notifyValidatedInfo(vKey, false, errorObj);
         }
 
         if (isValid) {
-          this.cfForm.notifyValidatedInfo(isValid, this.propName);
+          this.cfForm.notifyValidatedInfo(vKey, true);
         }
       });
   }

@@ -2,6 +2,7 @@ import { Input, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { IErrorInfo } from './IErrorInfo';
 import { IForm } from './IForm';
 import { IFormSetting } from './IFormSetting';
 import { IInput } from './IInput';
@@ -63,17 +64,21 @@ export abstract class BaseInput implements IInput, OnInit, OnDestroy {
       this.elem.statusChanges
         .subscribe(a => {
           const isValid = a === 'VALID';
+          const vKey = `${this.propName}_${this.cfFormSetting[this.propName].items[0].name}`;
 
           if (!isValid && this.elem.errors) {
-            const errorObj = {};
+            const errorInfo: IErrorInfo = {};
             for (const key of Object.keys(this.elem.errors)) {
-              errorObj[key] = this.elemValidators[key].msg;
+              errorInfo[key] = {
+                msg: this.elemValidators[key].msg,
+                dirty: this.elem.dirty,
+              };
             }
-            this.cfForm.notifyValidatedInfo(isValid, this.propName, errorObj);
+            this.cfForm.notifyValidatedInfo(vKey, false, errorInfo);
           }
 
           if (isValid) {
-            this.cfForm.notifyValidatedInfo(isValid, this.propName);
+            this.cfForm.notifyValidatedInfo(vKey, true);
           }
         })
     ];
