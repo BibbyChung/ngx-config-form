@@ -43,7 +43,7 @@ export class CfValidator {
     };
   }
 
-  static pattern(errClassName: string, pattern: string) {
+  static pattern(errClassName: string, regExp: RegExp) {
     return (c: AbstractControl) => {
       if (!c.dirty) {
         return null;
@@ -51,8 +51,7 @@ export class CfValidator {
       if (!c.value) {
         return null;
       }
-      const re = new RegExp(pattern);
-      const isValid = re.test(c.value);
+      const isValid = regExp.test(c.value);
       if (isValid) {
         return null;
       }

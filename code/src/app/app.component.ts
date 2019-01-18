@@ -131,7 +131,7 @@ export class AppComponent implements OnInit {
                 msg: '不小於2字元'
               },
               'mypattern': {
-                validator: CfValidator.pattern('mypattern', '^oo$'),
+                validator: CfValidator.pattern('mypattern', /^oo$/),
                 msg: 'my pattern is oo',
                 isPromiseOrObservable: false
               },
@@ -187,13 +187,13 @@ export class AppComponent implements OnInit {
                 msg: '請輸入名稱'
               },
               'mypattern1': {
-                validator: CfValidator.pattern('mypattern1', '1'),
+                validator: CfValidator.pattern('mypattern1', /1/),
                 msg: '要輸入1才可以',
                 isPromiseOrObservable: false
               },
               'mypattern2': {
-                validator: CfValidator.pattern('mypattern2', '2'),
-                msg: '要輸入2才可以',
+                validator: CfValidator.pattern('mypattern2', /^[\da-zA-Z]{5,10}$/),
+                msg: '^[\da-zA-Z]{5,10}$',
                 isPromiseOrObservable: false
               },
             },
