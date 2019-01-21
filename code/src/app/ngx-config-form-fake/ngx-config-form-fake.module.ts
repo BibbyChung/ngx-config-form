@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ButtonComponent } from '../../../projects/ngx-config-form/src/lib/components/button/button.component';
 import { FormComponent } from '../../../projects/ngx-config-form/src/lib/components/form/form.component';
 import { CheckboxComponent } from '../../../projects/ngx-config-form/src/lib/components/inputs/checkbox/checkbox.component';
+import { SelectComponent } from '../../../projects/ngx-config-form/src/lib/components/inputs/select/select.component';
 import { ConfirmPasswordComponent } from '../../../projects/ngx-config-form/src/lib/components/inputs/confirm-password/confirm-password.component';
 import { HiddenComponent } from '../../../projects/ngx-config-form/src/lib/components/inputs/hidden/hidden.component';
 import { RadioComponent } from '../../../projects/ngx-config-form/src/lib/components/inputs/radio/radio.component';
@@ -17,6 +18,7 @@ import { TextareaComponent } from '../../../projects/ngx-config-form/src/lib/com
     ConfirmPasswordComponent,
     HiddenComponent,
     RadioComponent,
+    SelectComponent,
     TextComponent,
     TextareaComponent,
     ButtonComponent,
@@ -33,6 +35,7 @@ import { TextareaComponent } from '../../../projects/ngx-config-form/src/lib/com
     ConfirmPasswordComponent,
     HiddenComponent,
     RadioComponent,
+    SelectComponent,
     TextComponent,
     TextareaComponent,
     ButtonComponent,

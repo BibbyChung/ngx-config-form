@@ -6,8 +6,8 @@
       }; let info">
 
         <label [for]="item.name" *ngIf="item.args['alias']">{{item.args['alias']}}</label>
-        <div class="d-block rlList">
-          <div class="form-check form-check-inline" *ngFor="let c of item.args['radios']">
+        <div class="d-block rl-list">
+          <div class="form-check form-check-inline" *ngFor="let c of item.args['options']">
             <label class="form-check-label">
               <input type="radio"
                 class="form-check-input" 

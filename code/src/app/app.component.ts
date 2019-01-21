@@ -184,7 +184,7 @@ export class AppComponent implements OnInit {
               'required': {
                 validator: Validators.required,
                 isPromiseOrObservable: false,
-                msg: '請輸入名稱'
+                msg: '請輸入帳號'
               },
               'mypattern1': {
                 validator: CfValidator.pattern('mypattern1', /1/),
@@ -198,12 +198,38 @@ export class AppComponent implements OnInit {
               },
             },
             args: {
-              alias: '',
-              placeholder: '请输入您的账号',
+              alias: '帳號',
+              placeholder: '请输入您的帳號',
               murmur: ''
             }
           }
         ]
+      },
+      city: {
+        type: 'select',
+        validators: {},
+        args: {},
+        items: [
+          {
+            name: 'city',
+            value: '',
+            validators: {
+              'required': {
+                validator: Validators.required,
+                isPromiseOrObservable: false,
+                msg: '您的城市未填入'
+              }
+            },
+            args: {
+              alias: '城市',
+              murmur: '請填入您的城市',
+              options: [
+                { value: '', text: '請選擇..' },
+                { value: 'taipei', text: '台北' },
+                { value: 'shanghai', text: '上海' }
+              ]
+            }
+          }]
       },
       description: {
         type: 'textarea',
@@ -275,7 +301,7 @@ export class AppComponent implements OnInit {
             args: {
               alias: '性別',
               murmur: '請填入您的性別',
-              radios: [
+              options: [
                 { value: 'male', text: '男' },
                 { value: 'female', text: '女' }
               ]
@@ -300,7 +326,7 @@ export class AppComponent implements OnInit {
             args: {
               alias: '產品',
               murmur: '請輸入您喜歡的產品',
-              checkboxs: [
+              options: [
                 { value: 'ios', text: '蘋果' },
                 { value: 'android', text: 'android' },
                 { value: 'windows', text: '微軟' }

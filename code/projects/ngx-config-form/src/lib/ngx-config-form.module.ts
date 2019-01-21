@@ -8,6 +8,7 @@ import { CheckboxComponent } from './components/inputs/checkbox/checkbox.compone
 import { ConfirmPasswordComponent } from './components/inputs/confirm-password/confirm-password.component';
 import { HiddenComponent } from './components/inputs/hidden/hidden.component';
 import { RadioComponent } from './components/inputs/radio/radio.component';
+import { SelectComponent } from './components/inputs/select/select.component';
 import { TextComponent } from './components/inputs/text/text.component';
 import { TextareaComponent } from './components/inputs/textarea/textarea.component';
 
@@ -17,6 +18,7 @@ import { TextareaComponent } from './components/inputs/textarea/textarea.compone
     ConfirmPasswordComponent,
     HiddenComponent,
     RadioComponent,
+    SelectComponent,
     TextComponent,
     TextareaComponent,
     ButtonComponent,
@@ -33,6 +35,7 @@ import { TextareaComponent } from './components/inputs/textarea/textarea.compone
     ConfirmPasswordComponent,
     HiddenComponent,
     RadioComponent,
+    SelectComponent,
     TextComponent,
     TextareaComponent,
     ButtonComponent,
