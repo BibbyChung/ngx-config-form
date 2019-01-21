@@ -22,9 +22,10 @@ export class FormComponent implements ControlValueAccessor, OnInit, IForm {
   isReady = false;
   private errorPropName = '_errMsg_';
 
+  @Input() autocomplete: 'on' | 'off' = 'off';
   @Input() cfFormSetting: IFormSetting = {};
   @Input() cfFormGroup: FormGroup;
-  @Input() class = '';
+  @Input() formClass = '';
   @Input() isDebug = false;
 
   @Output() cfFormReady = new EventEmitter<void>();

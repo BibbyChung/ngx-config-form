@@ -1,6 +1,7 @@
   <form *ngIf="isReady"
-    [class]="class" 
+    [class]="formClass" 
     [formGroup]="cfFormGroup"
+    [autocomplete]="autocomplete"
     novalidate>
 
     <ng-content></ng-content>

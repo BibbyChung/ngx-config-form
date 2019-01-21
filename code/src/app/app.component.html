@@ -9,7 +9,8 @@
     <div class="col-6">
       <cf-form
         #f 
-        [class]=""
+        [formClass]=""
+        [autocomplete]="'off'"
         [isDebug]="true" 
         [cfFormGroup]="cfFormGroup" 
         [cfFormSetting]="cfFormSetting" 
@@ -93,7 +94,7 @@
         <cf-button 
           [type]="'button'"
           [cfFormGroup]="cfFormGroup" 
-          [class]="'btn btn-primary mr-2'" 
+          [buttonClass]="'btn btn-primary mr-2'" 
           (click)="commitIt($event)">確定</cf-button>
 
         <button class="btn btn-secondary" (click)="setData($event)">reset</button>
