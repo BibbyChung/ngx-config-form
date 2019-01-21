@@ -46,5 +46,5 @@ export class NgxConfigFormFakeModule { }
 
 export * from '../../../projects/ngx-config-form/src/lib/common/IConverter';
 export * from '../../../projects/ngx-config-form/src/lib/common/IFormSetting';
-export * from '../../../projects/ngx-config-form/src/lib/validators/cfValidator';
+export * from '../../../projects/ngx-config-form/src/lib/validators/cfValidators';
 

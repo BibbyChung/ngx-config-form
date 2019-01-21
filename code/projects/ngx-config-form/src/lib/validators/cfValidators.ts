@@ -3,7 +3,7 @@ import { of } from 'rxjs';
 import { debounceTime, first, map, switchMap } from 'rxjs/operators';
 
 // @dynamic
-export class CfValidator {
+export class CfValidators {
 
   static confirmPassword(passwordName: string, confirmPasswordName: string): ValidatorFn {
     return (c: AbstractControl): { [key: string]: boolean } | null => {

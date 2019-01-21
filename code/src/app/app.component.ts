@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CfValidator, IFormSetting, IConverter } from './ngx-config-form-fake/ngx-config-form-fake.module';
+import { CfValidators, IFormSetting, IConverter } from './ngx-config-form-fake/ngx-config-form-fake.module';
 // import { CfValidator, IFormSetting, IConverter, IErrorInfo } from 'ngx-config-form';
 
 class DateConverter implements IConverter {
@@ -131,12 +131,12 @@ export class AppComponent implements OnInit {
                 msg: '不小於2字元'
               },
               'mypattern': {
-                validator: CfValidator.pattern('mypattern', /^oo$/),
+                validator: CfValidators.pattern('mypattern', /^oo$/),
                 msg: 'my pattern is oo',
                 isPromiseOrObservable: false
               },
               'asyncV0': {
-                validator: CfValidator.AsyncValidate('asyncV0', 400, v => {
+                validator: CfValidators.AsyncValidate('asyncV0', 400, v => {
                   return new Promise<boolean>((resolve, reject) => {
                     setTimeout(() => {
                       if (v === '1234') {
@@ -150,7 +150,7 @@ export class AppComponent implements OnInit {
                 isPromiseOrObservable: true
               },
               'asyncV1': {
-                validator: CfValidator.AsyncValidate('asyncV1', 400, v => {
+                validator: CfValidators.AsyncValidate('asyncV1', 400, v => {
                   return new Promise<boolean>((resolve, reject) => {
                     setTimeout(() => {
                       if (v === '12345') {
@@ -187,12 +187,12 @@ export class AppComponent implements OnInit {
                 msg: '請輸入帳號'
               },
               'mypattern1': {
-                validator: CfValidator.pattern('mypattern1', /1/),
+                validator: CfValidators.pattern('mypattern1', /1/),
                 msg: '要輸入1才可以',
                 isPromiseOrObservable: false
               },
               'mypattern2': {
-                validator: CfValidator.pattern('mypattern2', /^[\da-zA-Z]{5,10}$/),
+                validator: CfValidators.pattern('mypattern2', /^[\da-zA-Z]{5,10}$/),
                 msg: '^[\da-zA-Z]{5,10}$',
                 isPromiseOrObservable: false
               },
@@ -212,7 +212,7 @@ export class AppComponent implements OnInit {
         items: [
           {
             name: 'city',
-            value: '',
+            value: 'shanghai',
             validators: {
               'required': {
                 validator: Validators.required,
@@ -361,7 +361,7 @@ export class AppComponent implements OnInit {
         type: 'confirmPassword',
         validators: {
           'confirmPassword': {
-            validator: CfValidator.confirmPassword('password_source', 'password_confirm'),
+            validator: CfValidators.confirmPassword('password_source', 'password_confirm'),
             isPromiseOrObservable: false,
             msg: 'The password is not the same.'
           }

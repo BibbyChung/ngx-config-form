@@ -10,4 +10,4 @@ export * from './lib/common/IInput';
 export * from './lib/common/IFormSetting';
 export * from './lib/common/IInputValidatorSetting';
 export * from './lib/ngx-config-form.module';
-export * from './lib/validators/cfValidator';
+export * from './lib/validators/cfValidators';
