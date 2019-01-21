@@ -10,7 +10,7 @@ export class TextComponent extends BaseInput implements OnInit, OnDestroy {
 
   @Input() isReadOnly = false;
   @Input() type = 'text';
-  @Input() class: string;
+  @Input() inputClass: string;
   @Input() propName: string;
 
   constructor() {

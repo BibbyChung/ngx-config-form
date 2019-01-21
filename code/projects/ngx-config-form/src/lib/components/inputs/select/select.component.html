@@ -6,7 +6,7 @@
       }; let info">
         <label [for]="item.name" *ngIf="item.args['alias']">{{item.args['alias']}}</label>
         <select 
-          [class]="class" 
+          [class]="inputClass" 
           [id]="item.name"
           [formControlName]="item.name"
           [ngClass]="{ 'is-invalid': info.elem.dirty && info.elem.errors }">

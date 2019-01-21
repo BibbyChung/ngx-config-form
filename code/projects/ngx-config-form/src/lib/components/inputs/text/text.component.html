@@ -7,7 +7,7 @@
         <label [for]="item.name" *ngIf="item.args['alias']">{{item.args['alias']}}</label>
         <input 
           [type]="type" 
-          [class]="class" 
+          [class]="inputClass" 
           [id]="item.name" 
           [placeholder]="item.args['placeholder']"
           [formControlName]="item.name" 

@@ -10,7 +10,7 @@ export class TextareaComponent extends BaseInput implements OnInit, OnDestroy {
 
   @Input() rows = 3;
   @Input() isReadOnly = false;
-  @Input() class: string;
+  @Input() inputClass: string;
 
   @Input() propName: string;
 

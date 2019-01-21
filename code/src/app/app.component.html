@@ -28,7 +28,7 @@
               <cf-inputs-text 
                 [cfForm]="f"
                 [type]="'text'"
-                [class]="'form-control'"
+                [inputClass]="'form-control'"
                 [propName]="propName"
                 [isShowErrorMsg]="false"
                 ></cf-inputs-text>
@@ -38,7 +38,7 @@
               <cf-inputs-textarea
                 [cfForm]="f"
                 [rows]="6"
-                [class]="'form-control'"
+                [inputClass]="'form-control'"
                 [propName]="propName"
                 [isShowErrorMsg]="true"
                 ></cf-inputs-textarea>
@@ -48,7 +48,7 @@
               <cf-inputs-text 
                 [cfForm]="f"
                 [type]="'password'"
-                [class]="'form-control'"
+                [inputClass]="'form-control'"
                 [propName]="propName"
                 [isShowErrorMsg]="false"
                 ></cf-inputs-text>
@@ -57,7 +57,7 @@
             <div class="form-group" *ngIf="cfFormSetting[propName].type === 'select'">
               <cf-inputs-select 
                 [cfForm]="f"
-                [class]="'form-control'"
+                [inputClass]="'form-control'"
                 [propName]="propName"
                 [isShowErrorMsg]="false"
                 ></cf-inputs-select>

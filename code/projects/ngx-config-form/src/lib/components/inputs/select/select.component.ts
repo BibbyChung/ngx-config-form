@@ -9,7 +9,7 @@ import { BaseInput } from '../../../common/baseInput';
 export class SelectComponent extends BaseInput implements OnInit, OnDestroy {
 
   @Input() propName: string;
-  @Input() class: string;
+  @Input() inputClass: string;
 
   constructor() {
     super();
