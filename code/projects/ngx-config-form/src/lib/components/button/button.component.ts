@@ -12,6 +12,7 @@ export class ButtonComponent implements OnInit {
   @Input() buttonClass = '';
   @Input() isDebug: 'Y' | 'N' = 'N';
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
+  @Input() isProccessing = false;
 
   @Output() click = new EventEmitter();
 
@@ -28,6 +29,10 @@ export class ButtonComponent implements OnInit {
       return;
     }
     if (this.cfFormGroup.invalid) {
+      return;
+    }
+
+    if (this.isProccessing) {
       return;
     }
 

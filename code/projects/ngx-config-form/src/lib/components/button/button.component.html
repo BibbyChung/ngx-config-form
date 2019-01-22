@@ -1,6 +1,6 @@
 <button [type]="type"
   [class]="buttonClass"
-  [ngClass]="{'disabled': !(cfFormGroup.dirty && cfFormGroup.valid)}"
+  [ngClass]="{'disabled': !(cfFormGroup.dirty && cfFormGroup.valid) || isProccessing}"
   (click)="clickIt($event)">
   <ng-content></ng-content>
 </button>

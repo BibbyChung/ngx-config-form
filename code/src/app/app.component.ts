@@ -3,6 +3,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CfValidators, IFormSetting, IConverter } from './ngx-config-form-fake/ngx-config-form-fake.module';
 // import { CfValidator, IFormSetting, IConverter, IErrorInfo } from 'ngx-config-form';
 
+class AppHelp {
+  static async sleep(waitingMillisecond: number) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve();
+      }, waitingMillisecond);
+    });
+  }
+}
+
 class DateConverter implements IConverter {
   private operator0 = '-';
   private operator1 = '/';
@@ -33,6 +43,8 @@ export class AppComponent implements OnInit {
   get infoJson() {
     return JSON.stringify(this.info);
   }
+
+  isProcessing = false;
 
   ObjectUtil = Object;
 
@@ -65,10 +77,15 @@ export class AppComponent implements OnInit {
     this.setData(null);
   }
 
-  commitIt(event: Event) {
+  async commitIt(event: Event) {
+    event.preventDefault();
+    this.isProcessing = true;
+    console.log('proccessing...');
+    await AppHelp.sleep(3000);
     console.log(this.info);
     this.cfFormGroup.reset();
     this.setData(null);
+    this.isProcessing = false;
     console.log('done...');
   }
 
