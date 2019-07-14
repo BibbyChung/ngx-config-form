@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CfValidators, IFormSetting, IConverter } from './ngx-config-form-fake/ngx-config-form-fake.module';
-// import { CfValidator, IFormSetting, IConverter, IErrorInfo } from 'ngx-config-form';
+import { CfValidators, IFormSetting, IConverter } from 'ngx-config-form';
+// import { CfValidators, IFormSetting, IConverter } from '../../projects/ngx-config-form/src/public_api';
 
 class AppHelp {
   static async sleep(waitingMillisecond: number) {
@@ -34,15 +34,6 @@ class DateConverter implements IConverter {
 export class AppComponent implements OnInit {
 
   title = 'ngx-config-form-app';
-
-  set infoJson(v: string) {
-    try {
-      this.info = JSON.parse(v);
-    } catch (err) { }
-  }
-  get infoJson() {
-    return JSON.stringify(this.info);
-  }
 
   isProcessing = false;
 

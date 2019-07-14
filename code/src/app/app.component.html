@@ -105,7 +105,11 @@
     </div>
     <div class="col-6">
       <h2>msg</h2>
-      <textarea class="w-100" rows="20" [(ngModel)]="infoJson">
+      <!-- <textarea class="w-100" rows="20">
+        {{info | async | json}}
+      </textarea> -->
+      <textarea class="w-100" rows="20">
+        {{f.data$ | async | json}}
       </textarea>
       <hr />
       <h2>error message</h2>

@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgxConfigFormModule } from 'ngx-config-form';
-// import { NgxConfigFormFakeModule } from './ngx-config-form-fake/ngx-config-form-fake.module';
+// import { NgxConfigFormModule } from '../../projects/ngx-config-form/src/public_api';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,6 @@ import { NgxConfigFormModule } from 'ngx-config-form';
     FormsModule,
     ReactiveFormsModule,
     NgxConfigFormModule,
-    // NgxConfigFormFakeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

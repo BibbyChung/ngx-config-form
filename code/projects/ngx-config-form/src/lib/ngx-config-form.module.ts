@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 import { ButtonComponent } from './components/button/button.component';
 import { FormComponent } from './components/form/form.component';
 import { CheckboxComponent } from './components/inputs/checkbox/checkbox.component';
@@ -26,7 +25,6 @@ import { TextareaComponent } from './components/inputs/textarea/textarea.compone
   ],
   imports: [
     CommonModule,
-    BrowserModule,
     ReactiveFormsModule,
     FormsModule
   ],

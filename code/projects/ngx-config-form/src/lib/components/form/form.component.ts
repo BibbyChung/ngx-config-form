@@ -1,5 +1,6 @@
 import { Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core';
 import { AsyncValidatorFn, ControlValueAccessor, FormBuilder, FormGroup, NG_VALUE_ACCESSOR, ValidatorFn } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
 import { IErrorInfo } from '../../common/IErrorInfo';
 import { IForm } from '../../common/IForm';
 import { IFormSetting } from '../../common/IFormSetting';
@@ -34,6 +35,7 @@ export class FormComponent implements ControlValueAccessor, OnInit, IForm {
   private onTouched: (value) => {};
 
   private data: object;
+  data$ = new BehaviorSubject(this.data);
 
   constructor(private fb: FormBuilder) {
   }
@@ -76,6 +78,7 @@ export class FormComponent implements ControlValueAccessor, OnInit, IForm {
     }
     this.data[key] = v;
 
+    this.data$.next(this.data);
     this.onChange(this.data);
   }
 
