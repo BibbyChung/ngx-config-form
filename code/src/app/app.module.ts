@@ -4,8 +4,8 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { NgxConfigFormModule } from 'ngx-config-form';
-// import { NgxConfigFormModule } from '../../projects/ngx-config-form/src/public_api';
+// import { NgxConfigFormModule } from 'ngx-config-form';
+import { NgxConfigFormModule } from '../../projects/ngx-config-form/src/public_api';
 
 @NgModule({
   declarations: [

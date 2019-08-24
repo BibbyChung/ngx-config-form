@@ -9,5 +9,6 @@ export * from './lib/common/IErrorInfo';
 export * from './lib/common/IInput';
 export * from './lib/common/IFormSetting';
 export * from './lib/common/IInputValidatorSetting';
+export * from './lib/common/utils';
 export * from './lib/ngx-config-form.module';
 export * from './lib/validators/cfValidators';

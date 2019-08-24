@@ -31,7 +31,7 @@ export abstract class BaseInput implements IInput, OnInit, OnDestroy {
   protected elem: AbstractControl;
   protected elemValidators: IInputValidatorSetting;
 
-  private sbObs: Subscription[] = [];
+  private sbObs = new Subscription();
 
   ObjectUtil = Object;
 
@@ -46,42 +46,38 @@ export abstract class BaseInput implements IInput, OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    for (const ob of this.sbObs) {
-      ob.unsubscribe();
-    }
+    this.sbObs.unsubscribe();
   }
 
   private setNotify(): any {
-    const arr = [
-      // set value
-      this.elem.statusChanges
-        .pipe(
-          filter(a => a === 'VALID'),
-        ).subscribe(a => {
-          this.cfForm.notifyValueChange(this.propName, this.elem.value);
-        }),
-      // send error message
-      this.elem.statusChanges
-        .subscribe(a => {
-          const isValid = a === 'VALID';
-          const vKey = `${this.propName}_${this.cfFormSetting[this.propName].items[0].name}`;
+    // set value
+    this.sbObs.add(this.elem.statusChanges
+      .pipe(
+        filter(a => a === 'VALID'),
+      ).subscribe(a => {
+        this.cfForm.notifyValueChange(this.propName, this.elem.value);
+      }));
 
-          if (!isValid && this.elem.errors) {
-            const errorInfo: IErrorInfo = {};
-            for (const key of Object.keys(this.elem.errors)) {
-              errorInfo[key] = {
-                msg: this.elemValidators[key].msg,
-                dirty: this.elem.dirty,
-              };
-            }
-            this.cfForm.notifyValidatedInfo(vKey, false, errorInfo);
-          }
+    // send error message
+    this.sbObs.add(this.elem.statusChanges
+      .subscribe(a => {
+        const isValid = a === 'VALID';
+        const vKey = `${this.propName}_${this.cfFormSetting[this.propName].items[0].name}`;
 
-          if (isValid) {
-            this.cfForm.notifyValidatedInfo(vKey, true);
+        if (!isValid && this.elem.errors) {
+          const errorInfo: IErrorInfo = {};
+          for (const key of Object.keys(this.elem.errors)) {
+            errorInfo[key] = {
+              msg: this.elemValidators[key].msg,
+              dirty: this.elem.dirty,
+            };
           }
-        })
-    ];
-    this.sbObs.push(...arr);
+          this.cfForm.notifyValidatedInfo(vKey, false, errorInfo);
+        }
+
+        if (isValid) {
+          this.cfForm.notifyValidatedInfo(vKey, true);
+        }
+      }));
   }
 }

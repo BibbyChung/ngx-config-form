@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CfValidators, IFormSetting, IConverter } from 'ngx-config-form';
-// import { CfValidators, IFormSetting, IConverter } from '../../projects/ngx-config-form/src/public_api';
+// import { CfValidators, IFormSetting, IConverter, validateAllFormFields } from 'ngx-config-form';
+import { CfValidators, IFormSetting, IConverter, Utils } from '../../projects/ngx-config-form/src/public_api';
 
 class AppHelp {
   static async sleep(waitingMillisecond: number) {
@@ -49,19 +49,7 @@ export class AppComponent implements OnInit {
   }
 
   get errorMsg() {
-    const obj = this.info['_errMsg_'];
-    const arr = [];
-    if (obj) {
-      Object.keys(obj).forEach(prop => {
-        Object.keys(obj[prop]).forEach(propChild => {
-          const item = obj[prop][propChild];
-          if (item.dirty) {
-            arr.push(item['msg']);
-          }
-        });
-      });
-    }
-    return arr;
+    return Utils.getErrorMsgs(this.info);
   }
 
   ngOnInit(): void {
@@ -70,12 +58,33 @@ export class AppComponent implements OnInit {
 
   async commitIt(event: Event) {
     event.preventDefault();
+
     this.isProcessing = true;
     console.log('proccessing...');
+
     await AppHelp.sleep(3000);
     console.log(this.info);
     this.cfFormGroup.reset();
     this.setData(null);
+
+    this.isProcessing = false;
+    console.log('done...');
+  }
+
+  async commitIt0() {
+    Utils.validateAllFormFields(this.cfFormGroup);
+    if (!this.cfFormGroup.valid) {
+      return;
+    }
+
+    this.isProcessing = true;
+    console.log('proccessing...');
+
+    await AppHelp.sleep(3000);
+    console.log(this.info);
+    this.cfFormGroup.reset();
+    this.setData(null);
+
     this.isProcessing = false;
     console.log('done...');
   }
@@ -88,7 +97,7 @@ export class AppComponent implements OnInit {
     this.info = {
       id: 666,
       title: 'oo',
-      description: 'dd',
+      description: '',
       date: '2018/10/11',
       sex: 'female',
       productions: 'android,windows',
@@ -111,6 +120,26 @@ export class AppComponent implements OnInit {
             value: '0',
             validators: {},
             args: {}
+          }
+        ]
+      },
+      id00: {
+        type: 'hidden',
+        validators: {},
+        args: {},
+        items: [
+          {
+            name: 'id00',
+            value: '',
+            validators: {
+              'required': {
+                validator: Validators.required,
+                isPromiseOrObservable: false,
+                msg: '請輸入id00'
+              },
+            },
+            args: {
+            }
           }
         ]
       },

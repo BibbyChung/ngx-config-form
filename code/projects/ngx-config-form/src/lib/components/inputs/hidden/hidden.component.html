@@ -5,7 +5,17 @@
         elem: cfFormGroup.get([propName, item.name]) 
       }; let info">
         
-        <input type="hidden" [formControlName]="item.name" >   
+        <input type="hidden" [formControlName]="item.name" >
+
+        <!-- <small class="form-text text-muted" *ngIf="item.args['murmur']">
+          {{item.args['murmur']}}
+        </small> -->
+        
+        <ng-container *ngIf="isShowErrorMsg && info.elem.dirty && info.elem.errors">
+          <small class="form-text text-danger" *ngFor="let vName of ObjectUtil.keys(info.elem.errors)">
+            {{item.validators[vName].msg}}
+          </small>
+        </ng-container>
       
         <!-- <hr />
         info.elem.dirty : {{ info.elem.dirty  | json }} <br />

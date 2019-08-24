@@ -20,10 +20,13 @@
 
             <!-- 'hidden' | 'text' | 'radio' | 'checkbox' | 'password' | 'confirm-password' -->
     
-            <cf-inputs-hidden *ngIf="cfFormSetting[propName].type === 'hidden'"
-              [cfForm]="f"
-              [propName]="propName"
-              ></cf-inputs-hidden>
+            <div *ngIf="cfFormSetting[propName].type === 'hidden'">
+              <cf-inputs-hidden *ngIf="cfFormSetting[propName].type === 'hidden'"
+                [cfForm]="f"
+                [propName]="propName"
+                [isShowErrorMsg]="true"
+                ></cf-inputs-hidden>
+            </div>
             
             <div class="form-group" *ngIf="cfFormSetting[propName].type === 'text'">
               <cf-inputs-text 
@@ -31,7 +34,7 @@
                 [type]="'text'"
                 [inputClass]="'form-control'"
                 [propName]="propName"
-                [isShowErrorMsg]="false"
+                [isShowErrorMsg]="true"
                 ></cf-inputs-text>
             </div>
 
@@ -51,7 +54,7 @@
                 [type]="'password'"
                 [inputClass]="'form-control'"
                 [propName]="propName"
-                [isShowErrorMsg]="false"
+                [isShowErrorMsg]="true"
                 ></cf-inputs-text>
             </div>
 
@@ -60,7 +63,7 @@
                 [cfForm]="f"
                 [inputClass]="'form-control'"
                 [propName]="propName"
-                [isShowErrorMsg]="false"
+                [isShowErrorMsg]="true"
                 ></cf-inputs-select>
             </div>
     
@@ -68,7 +71,7 @@
               <cf-inputs-radio 
                 [cfForm]="f"
                 [propName]="propName"
-                [isShowErrorMsg]="false"
+                [isShowErrorMsg]="true"
                 ></cf-inputs-radio>
             </div>
     
@@ -77,7 +80,7 @@
                 [cfForm]="f"
                 [isMultiple]="true"
                 [propName]="propName"
-                [isShowErrorMsg]="false"
+                [isShowErrorMsg]="true"
                 ></cf-inputs-checkbox>
             </div>
     
@@ -85,7 +88,7 @@
               <cf-inputs-confirm-password 
                 [cfForm]="f"
                 [propName]="propName"
-                [isShowErrorMsg]="false"
+                [isShowErrorMsg]="true"
                 ></cf-inputs-confirm-password>
             </div>
     
@@ -97,6 +100,13 @@
           [buttonClass]="'btn btn-primary mr-2'" 
           [isProcessing]="isProcessing"
           (click)="commitIt($event)">確定</cf-button>
+
+
+        <button
+          class="btn btn-primary mr-2"
+          (click)="commitIt0()"
+          [disabled]="isProcessing"
+          >確定andCheck</button>  
 
         <button class="btn btn-secondary" (click)="setData($event)">reset</button>
 
